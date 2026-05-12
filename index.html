@@ -270,9 +270,25 @@
         .nav__logo { color: var(--first-color); font-weight: var(--font-medium); transition: 0.4s; }
         .nav__logo:hover { color: var(--first-color-alt); }
         
-        /* Nav Menu dengan efek Glassmorphism Space */
-        .nav__menu { position: fixed; bottom: 1rem; background-color: rgba(15, 15, 30, 0.7); width: 90%; border-radius: 4rem; padding: 1rem 2.25rem; backdrop-filter: blur(15px); transition: .4s; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-        .nav__list { display: flex; justify-content: space-between; align-items: center; }
+        /* Nav Menu dengan efek Glassmorphism Space (TENGAH BAWAH) */
+        .nav__menu { 
+            position: fixed; 
+            bottom: 2rem; 
+            left: 50%; /* Trik memosisikan elemen ke tengah */
+            transform: translateX(-50%); /* Menarik elemen kembali 50% lebarnya */
+            background-color: rgba(15, 15, 30, 0.85); 
+            width: max-content; /* Lebar menyesuaikan ikon di dalamnya */
+            max-width: 90%; /* Supaya tidak keluar layar di hp kecil */
+            border-radius: 4rem; 
+            padding: 1rem 2.25rem; 
+            backdrop-filter: blur(15px); 
+            transition: .4s; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5); 
+            z-index: var(--z-fixed);
+        }
+        
+        .nav__list { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
         .nav__link { color: var(--text-color); font-size: 1.25rem; padding: .4rem; display: flex; border-radius: 5rem; }
         .nav__text { position: absolute; bottom: -100%; }
         
@@ -398,8 +414,8 @@
         .contact__form-area textarea { resize: none; }
 
         /* Footer dengan warna space pekat */
-        .footer { background-color: #020205; border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer__container { padding: 2rem 0 6rem; }
+        .footer { background-color: #020205; border-top: 1px solid rgba(255,255,255,0.05); padding-bottom: 6rem; /* Ditambah ruang di bawah agar tidak tertutup nav */ }
+        .footer__container { padding: 2rem 0; }
         .footer__title, .footer__link { color: #fff; }
         .footer__title { text-align: center; margin-bottom: 2rem; text-shadow: 0 0 10px var(--first-color); color: var(--first-color); }
         .footer__list { display: flex; justify-content: center; column-gap: 1.5rem; margin-bottom: 2rem; }
@@ -414,7 +430,6 @@
         ::-webkit-scrollbar-thumb:hover { background-color: #202035; }
 
         @media screen and (max-width: 320px) {
-          .nav__menu { padding: 1rem 1.5rem; }
           .home__buttons { flex-direction: column; }
           .home__handle { width: 150px; height: 253px; }
           .home__img { width: 130px; }
@@ -424,10 +439,13 @@
           .services__container { grid-template-columns: 145px; justify-content: center; }
           .work__item { font-size: var(--small-font-size); }
           .work__filters { column-gap: .25rem; }
+          /* Penyesuaian dock di layar paling kecil */
+          .nav__list { gap: 1rem; }
+          .nav__link { font-size: 1.15rem; padding: .3rem; }
         }
 
         @media screen and (min-width: 576px) {
-          .nav__menu { width: 328px; left: 0; right: 0; margin: 0 auto; }
+          /* CSS .nav__menu (left, right, margin auto) DIHAPUS karena digantikan trik left:50% */
           .about__wrapper { display: flex; justify-content: center; }
           .about__handle { width: 400px; justify-content: center; }
           .about__info { grid-template-columns: repeat(3, 140px); justify-content: center; }
@@ -454,7 +472,6 @@
           .section { padding: 6.5rem 0 1rem; }
           .section__title { margin-bottom: 3.5rem; }
           .nav { height: calc(var(--header-height) + 1rem); }
-          .nav__menu { width: 550px; }
           .nav__text { position: relative; margin-left: .5rem; }
           .home__handle { width: 290px; height: 400px; }
           .home__img { width: 290px; }
@@ -592,7 +609,7 @@
                         Arya Sukma Putra Dwika is a cross-disciplinary practitioner who strategically integrates technical informatics methodologies with the dynamic creativity of digital marketing to deliver technology solutions that drive business value. As a graduate of Informatics from Universitas Muhammadiyah Pontianak, he possesses comprehensive capabilities in architecting technology infrastructure, encompassing the full cycle of web ecosystem development to the management and maintenance of complex application systems.
                     </p>
 
-                    <a href="mailto:arya.sukma.420@gmail.com" class="button">Contact Me</a>
+                    <a href="contactme.html" class="button">Contact Me</a>
                 </div>
             </div>
         </section>
