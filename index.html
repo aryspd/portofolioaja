@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arya Sukma Putra Dwika | IT Professional Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Swiper CSS (Untuk Slider Galeri Foto) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <style>
+        /* Variabel Tema IT Dark Mode */
+        :root {
+            --bg-dark: #0b1120;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --accent: #0ea5e9;
+            --accent-glow: rgba(14, 165, 233, 0.4);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        /* Navigasi */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 17, 32, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Layout Section Global */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto 0;
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Hero Section */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            padding-top: 120px;
+            background: radial-gradient(circle at 10% 50%, rgba(14, 165, 233, 0.1), transparent 50%);
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h3 {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            text-align: justify;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--bg-card);
+            color: var(--text-main);
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--accent-glow);
+        }
+
+        .hero-img {
+            position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img img {
+            width: 380px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid rgba(255,255,255,0.1);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transition: var(--transition);
+            filter: grayscale(10%);
+        }
+
+        .hero-img img:hover {
+            filter: grayscale(0%);
+            transform: translate(5px, 5px);
+        }
+
+        .hero-img::before {
+            content: '';
+            position: absolute;
+            width: 380px;
+            height: 380px;
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-45%);
+            z-index: 1;
+        }
+
+        /* Timeline / Pengalaman */
+        #experience {
+            background-color: #0f172a; /* Slightly lighter dark */
+        }
+
+        .timeline-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .timeline-col h3 {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline-col h3 i {
+            color: var(--accent);
+        }
+
+        .timeline-item {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            background: var(--bg-card-hover);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .timeline-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item .date {
+            font-family: var(--font-mono);
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .timeline-item ul, .timeline-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .timeline-item ul {
+            padding-left: 20px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            border-top: 3px solid var(--accent);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .skill-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .skill-card ul li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-card ul li::before {
+            content: '✓';
+            color: #10b981; /* Green Check */
+            font-weight: bold;
+        }
+
+        /* Galeri Foto (Slider) */
+        #photo-gallery {
+            background-color: #0f172a;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 450px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg-card);
+            position: relative;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--accent);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--accent);
+        }
+
+        /* Galeri Video Showcase */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .video-item {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+        }
+
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--accent);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-caption {
+            padding: 15px;
+            text-align: center;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Contact & Footer */
+        footer {
+            text-align: center;
+            padding: 60px 8%;
+            background: var(--bg-dark);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .contact-box {
+            background: var(--bg-card);
+            padding: 20px 30px;
+            border-radius: 10px;
+            min-width: 250px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-box i {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .contact-box a, .contact-box p {
+            display: block;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .contact-box a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 120px;
+            }
+            .hero-text p { margin: 0 auto 30px; }
+            .social-links { justify-content: center; }
+            .timeline-container { grid-template-columns: 1fr; }
+            .hero-img::before { left: 50%; transform: translateX(-50%); }
+            .nav-links { display: none; }
+            .swiper { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav>
+        <a href="#" class="logo">&lt;Arya Sukma Putra Dwika/&gt;</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#photo-gallery">Photos</a></li>
+            <li><a href="#video-gallery">Videos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="hero-text">
+            <h3>System.out.println("Hello World!");</h3>
+            <h1>Arya Sukma <br><span class="highlight">Putra Dwika</span></h1>
+            <p>
+                Lulusan Informatika dengan keahlian komprehensif dalam infrastruktur jaringan, keamanan informasi, dan pengelolaan sistem. Memiliki rekam jejak dalam pengembangan website, pemeliharaan aplikasi, serta strategi digital marketing kreatif yang mendukung efisiensi teknologi dan pertumbuhan bisnis.
+            </p>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/aryaspd" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/aryspd" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/aryaspd_/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:arya.sukma.420@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+        <div class="hero-img">
+            <img src="images/2.jpeg" alt="Foto Profil Arya Sukma Putra Dwika">
+        </div>
+    </section>
+
+    <!-- Experience & Achievements -->
+    <section id="experience">
+        <h2 class="section-title">Rekam Jejak Profesional</h2>
+        <div class="timeline-container">
+            
+            <!-- Pengalaman Kerja -->
+            <div class="timeline-col">
+                <h3><i class="fas fa-briefcase"></i> Pengalaman Kerja</h3>
+                
+                <div class="timeline-item">
+                    <h4>IT Development Specialist & Digital Marketing</h4>
+                    <span class="date">PT Alfasyimar Visual Technology (2026)</span>
+                    <ul>
+                        <li>Mengembangkan sistem aplikasi Alfateve (Drama & Film) dengan solusi TI terintegrasi.</li>
+                        <li>Merancang dan mengimplementasikan strategi digital marketing.</li>
+                        <li>Menggabungkan keahlian teknis dan kreatif dalam mendukung pertumbuhan platform.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Content Writer</h4>
+                    <span class="date">Instagram @genz.medianetwork & @localhits_pnk (2025–2026)</span>
+                    <ul>
+                        <li>Menulis & mengelola konten kreatif di Instagram untuk audiens Gen Z.</li>
+                        <li>Membuat headline, caption, dan storytelling engaging.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Web Infrastructure Developer</h4>
+                    <span class="date">PT Firman's Group (2025)</span>
+                    <p>Bertanggung jawab dalam pembangunan dan optimalisasi infrastruktur web perusahaan.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Digital Marketing</h4>
+                    <span class="date">Divisi Infokom Univ. Muhammadiyah Pontianak (2022 – 2024)</span>
+                    <p>Mengelola strategi komunikasi digital dan informasi di lingkungan universitas.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Desain Grafis Produk</h4>
+                    <span class="date">PT Karya Bujang Abadi (2024)</span>
+                </div>
+            </div>
+
+            <!-- Prestasi & Pengalaman -->
+            <div class="timeline-col">
+                <h3><i class="fas fa-award"></i> Prestasi & Pengalaman</h3>
+
+                <div class="timeline-item">
+                    <h4>Borneo Fair 2025</h4>
+                    <span class="date">Pontianak, Kalimantan Barat</span>
+                    <p>Merancang strategi pemasaran digital dan manajemen event skala besar, sekaligus berperan dalam aspek IT Development dan Digital Marketing.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Lomba Monev PKP2 ke-2 Puspresma PTMA</h4>
+                    <span class="date">2023</span>
+                    <p>Berpartisipasi dalam ajang tingkat nasional di lingkungan PTMA, menunjukkan komitmen pada pengembangan kompetensi mahasiswa.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Program Kreativitas Mahasiswa (PKM)</h4>
+                    <span class="date">Kemdikbud / Puspresnas (2023)</span>
+                    <p>Terlibat aktif dalam inovasi mahasiswa yang didanai pemerintah, berkontribusi pada ide kreatif dan implementasi program.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Anggota KPPS Pemilu Presiden</h4>
+                    <span class="date">2024</span>
+                    <p>Berperan dalam penyelenggaraan demokrasi sebagai anggota KPPS, memastikan kelancaran proses pemungutan suara di tingkat lokal.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Architecture -->
+    <section id="skills">
+        <h2 class="section-title">Keahlian Sistem & Kreatif</h2>
+        <div class="skills-grid">
+            
+            <div class="skill-card">
+                <i class="fas fa-server"></i>
+                <h4>IT & Web Development</h4>
+                <ul>
+                    <li>Hardware Repair & Troubleshooting</li>
+                    <li>OS Installation & Configuration</li>
+                    <li>System Maintenance & Opt.</li>
+                    <li>Web Dev (Front-End & Back-End)</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <i class="fas fa-pen-nib"></i>
+                <h4>Design & Creative Tools</h4>
+                <ul>
+                    <li>Figma (UI/UX Design)</li>
+                    <li>Adobe Premiere Pro (Video Editing)</li>
+                    <li>Adobe Illustrator (Vector)</li>
+                    <li>Adobe Photoshop (Photo Editing)</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <i class="fas fa-bullhorn"></i>
+                <h4>Marketing & Comm.</h4>
+                <ul>
+                    <li>Digital Marketing Strategy</li>
+                    <li>Social Media Management</li>
+                    <li>Content Planning</li>
+                    <li>Branding & Engagement</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <i class="fas fa-users"></i>
+                <h4>Soft Skills</h4>
+                <ul>
+                    <li>Project Management</li>
+                    <li>Team Collaboration & Leadership</li>
+                    <li>Creative Writing & Storytelling</li>
+                    <li>Problem-Solving & Critical Thinking</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Galeri Foto (Slider Swiper.js) -->
+    <section id="photo-gallery">
+        <h2 class="section-title">Galeri Foto Proyek</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Dokumentasi kegiatan, desain visual, dan implementasi infrastruktur.</p>
+        
+        <!-- Swiper Container -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <!-- Ganti src di bawah dengan foto galeri Anda yang sebenarnya -->
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Galeri Foto 1">
+                </div>
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Galeri Foto 2">
+                </div>
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Galeri Foto 3">
+                </div>
+            </div>
+            <!-- Add Pagination & Navigation -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <!-- Galeri Video Showcase -->
+    <section id="video-gallery">
+        <h2 class="section-title">Galeri Video Hasil Karya</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Kumpulan presentasi, portofolio digital, dan dokumentasi visual.</p>
+        
+        <div class="video-grid">
+            
+<div class="video-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/pliWiGHHj1g" title="YouTube Video 5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">Penerapan Algoritma C 5.0 Pada Penilaian Kinerja Kurir Shopee Expres Hub Pontianak Utara</div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/h29RqPYDa9c" title="YouTube Video 6" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">Prediksi Harga Smartphone Berdasarkan Fitur-Fitur Pada Smarthphone Dengan Random Forest Regression</div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/hUPAWhSVXXQ" title="YouTube Video 7" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">Sistem Pendukung Keputusan Pemilihan Pemain Klub Voli Nomen Nescio (Nn) Berbasis Website Menggunakan Metode Simple Additive Weighting (Saw)</div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/LSg3Zj4mDUo" title="YouTube Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">PKKMB 2024 FALKUTAS TEKNIK DAN ILMU KOMPUTER UNIVERSITAS MUHAMMADIYAH PONTIANAK</div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/js2xv7p6s08" title="YouTube Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">PKKMB Fakultas Teknik Dan Ilmu Komputer UM Pontianak 2020 & 2021 | We Are Strong Together</div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/zJORup4jtLs" title="YouTube Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">Program Studi Teknik Informatika</div>
+            </div>
+
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/4m6YnfGIn5M" title="YouTube Video 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">PKKMB 2022 Fakultas Teknik Dan Ilmu Komputer UM Pontianak SPIRE FOR SOLIDARITY</div>
+            </div>
+
+            <!-- Video Google Drive -->
+            <div class="video-item">
+                <div class="video-wrapper">
+                    <iframe src="https://drive.google.com/file/d/1intUqCb3BbGpXZR5Ren-znoRECjYd0_D/preview" title="Google Drive Video" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">Selamat Ulang Tahun Jasatania Tbk</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Contact Section -->
+    <footer id="contact">
+        <h2 style="margin-bottom: 40px;">Initialize Connection</h2>
+        
+        <div class="contact-grid">
+            <div class="contact-box">
+                <i class="fas fa-envelope"></i>
+                <h4>Email</h4>
+                <a href="mailto:arya.sukma.420@gmail.com">arya.sukma.420@gmail.com</a>
+            </div>
+            <div class="contact-box">
+                <i class="fas fa-phone-alt"></i>
+                <h4>WhatsApp</h4>
+                <a href="https://wa.me/6289629986883" target="_blank">0896 2998 6883</a>
+            </div>
+            <div class="contact-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <h4>Location</h4>
+                <p>Jl. H. Agus Salim, Pontianak</p>
+            </div>
+        </div>
+
+        <p class="copyright">&copy; 2026 Arya Sukma Putra Dwika. System Built Successfully.</p>
+    </footer>
+
+    <!-- Swiper JS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script>
+        // Inisialisasi Slider Foto
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            centeredSlides: true,
+            loop: true,
+            autoplay: {
+                delay: 3500, // Otomatis bergeser setiap 3.5 detik
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+</body>
+</html>
