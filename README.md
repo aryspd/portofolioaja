@@ -1,6 +1,6 @@
 # Portofolio Arya Sukma Putra Dwika
 
-Website HTML statis untuk profil, pengalaman, keahlian, karya video, dan dokumentasi. Revisi menggunakan Tailwind CSS 4, daisyUI 5, Alpine.js 3, dan GSAP 3. Semua font, script, ikon, dan foto tersedia secara lokal.
+Website HTML statis untuk profil, pengalaman, keahlian, karya video, dan dokumentasi. Versi cinematic menggunakan Tailwind CSS 4, daisyUI 5, Alpine.js 3, GSAP 3, dan perspektif CSS 3D. Semua font, script, ikon, dan foto tersedia secara lokal.
 
 ## Membuka website
 
@@ -35,7 +35,10 @@ Gunakan Node.js 22 atau lebih baru untuk build. `npm run dev` memantau perubahan
 - Pemutar video dimuat hanya ketika karya dipilih, dengan tautan sumber sebagai alternatif.
 - 18 foto dokumentasi, load more, dan pratinjau dengan kontrol keyboard.
 - Kontak email/WhatsApp serta salin email dengan feedback.
-- Animasi pembukaan bertahap sekitar 1 detik: judul, tombol, foto, dan kategori muncul halus menggunakan opacity/transform tanpa pustaka tambahan. Animasi selesai langsung saat scroll atau fokus keyboard dan menghormati pengaturan reduced motion.
+- Desain cinematic menyeluruh: judul poster, warna teal/emas, foto bergradasi, viewfinder, katalog karya, dan galeri contact sheet.
+- Animasi kamera 3D saat pembukaan sekitar 1.4 detik, parallax kamera saat scroll di desktop, serta tilt halus untuk foto/kartu ketika mouse bergerak.
+- Tombol pause/play animasi di header dengan preferensi tersimpan; reduced motion perangkat selalu diutamakan. Gerakan pointer tidak dijalankan pada touch.
+- Cahaya latar berhenti di luar viewport dan saat tab tidak aktif; grain statis tanpa unduhan eksternal. Tidak menggunakan model WebGL, autoplay audio/video, atau pustaka animasi tambahan.
 - Tanpa JavaScript, semua karya dan foto dapat dibuka melalui tautan biasa.
 
 ## Publikasi ke GitHub Pages
@@ -73,3 +76,5 @@ Build Tailwind, pemeriksaan sintaks JavaScript, formatter, dan audit statis sele
 Tidak ditemukan horizontal overflow pada viewport 320, 390, 600, 768, 1024, dan 1440px. Scan aksesibilitas otomatis tidak menemukan pelanggaran pada tema gelap/terang, dialog foto, dan menu mobile terbuka. Ini merupakan pemeriksaan otomatis, bukan sertifikasi aksesibilitas penuh.
 
 Seluruh foto asli dan `CNAME` dipertahankan byte-for-byte; 19 turunan WebP diverifikasi dapat dibaca. Perilaku UI video serta tautan alternatif diuji dengan sumber eksternal diblokir; ketersediaan dan pemutaran video asli tetap mengikuti penyedia sumber.
+
+Validasi tambahan versi cinematic mencakup respons perspektif 3D dan reset pointer, gerakan kamera saat scroll, penghentian seluruh animasi melalui tombol pause, preferensi pause setelah reload, prioritas reduced motion, penghentian cahaya di luar viewport, perilaku touch, serta pemutar video dan fokus keyboard pada kartu 3D. Scan aksesibilitas seluruh halaman dengan animasi dimatikan juga tidak menemukan pelanggaran otomatis pada tema gelap maupun terang.
