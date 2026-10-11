@@ -87,7 +87,9 @@ Pratinjau memakai satu dialog native dengan judul, tombol tutup, Escape, latar i
 
 Tanpa JavaScript, semua kartu/foto tersedia sebagai tautan, navigasi tetap terlihat, dan disclosure prestasi tetap bekerja. Kontrol yang memerlukan JavaScript disembunyikan. Tanpa koneksi internet, UI/font/foto tetap tersedia; pemutar video eksternal dan kontak online memerlukan koneksi.
 
-GSAP hanya mengatur masuknya hero dan judul bagian. Konten tidak bergantung pada keberhasilan animasi. Perubahan prefers-reduced-motion membatalkan animasi; transisi dan smooth scroll dinonaktifkan.
+GSAP mengatur satu urutan pembukaan selama sekitar 1 detik: isi header, judul dan pengantar, tombol dan tautan sosial, foto, lalu strip kategori. Foto bergerak 20px dengan skala awal 0.98; teks bergerak 8–20px. Gunakan hanya opacity dan transform dengan easing power3.out, tanpa loop, efek blur, atau layar loading. Urutan selesai langsung ketika pengunjung melakukan scroll atau memindahkan fokus sehingga kontrol tidak bergerak saat dipakai. Setelah selesai, properti animasi inline dibersihkan dan kemiringan foto kembali mengikuti CSS.
+
+Judul bagian tetap muncul sekali saat discroll. Konten tidak bergantung pada keberhasilan animasi. Perubahan prefers-reduced-motion membatalkan animasi; transisi dan smooth scroll dinonaktifkan. Pembukaan tidak diputar ulang ketika preferensi gerakan diubah setelah halaman dibuka. Tidak menambah pustaka, permintaan jaringan, atau aset untuk animasi ini.
 
 | Dokumentasi                         | Token runtime                              | Konsumen                       |
 | ----------------------------------- | ------------------------------------------ | ------------------------------ |

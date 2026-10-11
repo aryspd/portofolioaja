@@ -43,25 +43,58 @@ document.addEventListener("alpine:init", () => {
         "(prefers-reduced-motion: reduce)",
       );
       let animationContext;
+      let openingPlayed = false;
+      let finishOpening;
       const animate = () => {
+        finishOpening?.();
         animationContext?.revert();
-        if (motionPreference.matches || !window.gsap) return;
+        if (motionPreference.matches || !window.gsap) {
+          openingPlayed = true;
+          return;
+        }
         animationContext = gsap.context(() => {
-          gsap.from(".hero-copy > *", {
-            y: 18,
-            opacity: 0,
-            duration: 0.65,
-            stagger: 0.09,
-            ease: "power2.out",
-            clearProps: "all",
-          });
-          gsap.from(".portrait-board", {
-            opacity: 0,
-            duration: 0.85,
-            delay: 0.15,
-            ease: "power2.out",
-            clearProps: "all",
-          });
+          if (!openingPlayed) {
+            openingPlayed = true;
+            // One short sequence, using only compositor-friendly properties.
+            // No loader, continuous loop, or extra animation dependency.
+            const cleanup = () => {
+              window.removeEventListener("scroll", finishOpening);
+              document.removeEventListener("focusin", finishOpening);
+            };
+            const opening = gsap.timeline({
+              defaults: {
+                opacity: 0,
+                duration: 0.65,
+                ease: "power3.out",
+                clearProps: "transform,opacity,willChange",
+              },
+              onComplete: cleanup,
+            });
+            finishOpening = () => {
+              opening.progress(1);
+              cleanup();
+            };
+            opening
+              .from(".header-inner", { y: -6, duration: 0.45 }, 0)
+              .from(".hero-copy .eyebrow", { y: 10 }, 0.04)
+              .from(".hero-copy h1", { y: 20, duration: 0.8 }, 0.1)
+              .from(".hero-intro", { y: 14 }, 0.2)
+              .from(".hero-actions .btn", { y: 12, stagger: 0.07 }, 0.3)
+              .from(
+                ".social-links a",
+                { y: 8, duration: 0.5, stagger: 0.05 },
+                0.4,
+              )
+              .from(
+                ".portrait-board",
+                { y: 20, scale: 0.98, duration: 0.9 },
+                0.12,
+              )
+              .from(".hero-bottom", { y: 10, duration: 0.55 }, 0.5);
+            // Immediately settle moving targets when a visitor starts interacting.
+            window.addEventListener("scroll", finishOpening, { passive: true });
+            document.addEventListener("focusin", finishOpening);
+          }
           if (window.ScrollTrigger) {
             gsap.registerPlugin(ScrollTrigger);
             gsap.utils.toArray(".section-heading").forEach((heading) => {

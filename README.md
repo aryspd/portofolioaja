@@ -35,7 +35,7 @@ Gunakan Node.js 22 atau lebih baru untuk build. `npm run dev` memantau perubahan
 - Pemutar video dimuat hanya ketika karya dipilih, dengan tautan sumber sebagai alternatif.
 - 18 foto dokumentasi, load more, dan pratinjau dengan kontrol keyboard.
 - Kontak email/WhatsApp serta salin email dengan feedback.
-- Animasi GSAP yang menghormati pengaturan reduced motion.
+- Animasi pembukaan bertahap sekitar 1 detik: judul, tombol, foto, dan kategori muncul halus menggunakan opacity/transform tanpa pustaka tambahan. Animasi selesai langsung saat scroll atau fokus keyboard dan menghormati pengaturan reduced motion.
 - Tanpa JavaScript, semua karya dan foto dapat dibuka melalui tautan biasa.
 
 ## Publikasi ke GitHub Pages
