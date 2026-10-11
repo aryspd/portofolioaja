@@ -7,7 +7,7 @@
       name="description"
       content="Portofolio Arya Sukma Putra Dwika, lulusan Informatika di Pontianak. Pengembangan web, infrastruktur IT, digital marketing, dan karya visual."
     />
-    <meta name="theme-color" content="#080d10" />
+    <meta name="theme-color" content="#0b1321" />
     <meta
       property="og:title"
       content="Arya Sukma Putra Dwika | IT & Digital Creative"
@@ -39,8 +39,6 @@
         const theme = localStorage.getItem("arya-portfolio-theme");
         if (["arya-dark", "arya-light"].includes(theme))
           document.documentElement.dataset.theme = theme;
-        if (localStorage.getItem("arya-motion-enabled") === "false")
-          document.documentElement.dataset.motion = "paused";
       } catch {}
     </script>
     <link rel="stylesheet" href="assets/css/styles.css" />
@@ -76,9 +74,6 @@
         </symbol>
         <symbol id="i-close" viewBox="0 0 24 24">
           <path d="m6 6 12 12M6 18 18 6" />
-        </symbol>
-        <symbol id="i-pause" viewBox="0 0 24 24">
-          <path d="M8 5v14M16 5v14" />
         </symbol>
         <symbol id="i-menu" viewBox="0 0 24 24">
           <path d="M4 6h16M4 12h16M4 18h16" />
@@ -224,22 +219,6 @@
         </nav>
         <div class="header-actions">
           <button
-            class="icon-button motion-toggle"
-            type="button"
-            @click="toggleMotion()"
-            :disabled="reducedMotion"
-            :aria-label="reducedMotion ? 'Animasi dinonaktifkan oleh pengaturan perangkat' : motionEnabled ? 'Matikan animasi' : 'Aktifkan animasi'"
-            :aria-pressed="motionEnabled && !reducedMotion"
-            title="Aktifkan atau matikan animasi"
-          >
-            <svg class="icon" aria-hidden="true">
-              <use
-                :href="motionEnabled && !reducedMotion ? '#i-pause' : '#i-play'"
-                href="#i-pause"
-              ></use>
-            </svg>
-          </button>
-          <button
             class="icon-button theme-toggle"
             type="button"
             @click="toggleTheme()"
@@ -282,43 +261,28 @@
         </div>
       </div>
     </header>
-    <div class="reading-progress" aria-hidden="true"><span></span></div>
     <main id="main-content" tabindex="-1">
-      <section
-        id="home"
-        class="hero cinematic-hero"
-        aria-labelledby="hero-title"
-      >
-        <div class="scene-atmosphere" aria-hidden="true">
-          <div class="scene-light"></div>
-          <div class="scene-grain"></div>
-        </div>
+      <section id="home" class="hero" aria-labelledby="hero-title">
         <div class="shell">
-          <div class="scene-meta">
-            <span>PORTOFOLIO / ARYA SPD</span><span>PONTIANAK, INDONESIA</span>
-          </div>
           <div class="hero-layout">
             <div class="hero-copy">
-              <p class="eyebrow">Informatika × Digital Creative</p>
-              <h1 id="hero-title">ARYA SUKMA<span>PUTRA DWIKA.</span></h1>
-              <p class="hero-tagline">
-                Teknologi dengan arah.<br />Visual dengan cerita.
-              </p>
+              <p class="eyebrow">Informatika × Kreativitas</p>
+              <h1 id="hero-title">Arya Sukma<br /><span>Putra Dwika.</span></h1>
               <p class="hero-intro">
                 Lulusan Informatika yang menghubungkan
-                <strong>pengembangan web &amp; sistem</strong> dengan
+                <strong>pengembangan web & sistem</strong> dengan
                 <strong>strategi digital kreatif</strong>. Berpengalaman dalam
                 infrastruktur jaringan, keamanan informasi, pemeliharaan
                 aplikasi, dan digital marketing.
               </p>
               <div class="hero-actions">
                 <a class="btn btn-primary" href="#video-gallery"
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#i-play"></use></svg
-                  >Jelajahi karya</a
-                >
-                <a class="btn btn-secondary" href="#contact"
-                  >Hubungi saya<svg class="icon" aria-hidden="true">
+                  >Jelajahi karya
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-arrow-down"></use></svg></a
+                ><a class="btn btn-secondary" href="#contact"
+                  >Hubungi saya
+                  <svg class="icon" aria-hidden="true">
                     <use href="#i-arrow-up-right"></use></svg
                 ></a>
               </div>
@@ -330,16 +294,14 @@
                   ><svg class="icon" aria-hidden="true">
                     <use href="#i-linkedin"></use></svg
                   >LinkedIn</a
-                >
-                <a
+                ><a
                   href="https://github.com/aryspd"
                   target="_blank"
                   rel="noopener noreferrer"
                   ><svg class="icon" aria-hidden="true">
                     <use href="#i-github"></use></svg
                   >GitHub</a
-                >
-                <a
+                ><a
                   href="https://www.instagram.com/aryaspd_/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -349,68 +311,56 @@
                 >
               </div>
             </div>
-            <div class="scene-stage">
-              <div class="scene-orbit" aria-hidden="true"></div>
-              <div class="scene-rig tilt-surface" data-tilt="hero">
-                <div class="scene-backplate" aria-hidden="true"></div>
-                <div class="portrait-board">
-                  <div class="board-top">
-                    <span>IT &amp; DIGITAL CREATIVE</span
-                    ><span class="film-dot" aria-hidden="true"></span>
-                  </div>
-                  <div class="portrait-frame">
-                    <img
-                      src="assets/images/portrait.webp"
-                      alt="Arya Sukma Putra Dwika dengan latar langit biru"
-                      width="864"
-                      height="1184"
-                      fetchpriority="high"
-                    />
-                    <div class="viewfinder" aria-hidden="true">
-                      <i></i><i></i><i></i><i></i>
-                    </div>
-                    <div class="portrait-label">
-                      <p class="poster-kicker">TEKNOLOGI · STRATEGI · CERITA</p>
-                      <strong>Di antara logika<br />dan imajinasi.</strong>
-                    </div>
-                  </div>
-                  <div class="board-bottom">
-                    <span>DEVELOPMENT</span><span>MARKETING</span
-                    ><span>VISUAL</span>
-                  </div>
-                </div>
-                <div class="scene-ticket" aria-hidden="true">
-                  <span>PERSONAL PORTFOLIO</span><strong>ARYA SPD.</strong
-                  ><span>IT &amp; DIGITAL CREATIVE</span>
-                </div>
-                <div class="scene-contact-sheet" aria-hidden="true">
-                  <img
-                    src="assets/images/1-8.webp"
-                    alt=""
-                    width="600"
-                    height="450"
-                  /><img
-                    src="assets/images/1-9.webp"
-                    alt=""
-                    width="600"
-                    height="450"
-                  /><span>DOKUMENTASI / KOLABORASI</span>
+            <div class="portrait-board">
+              <div class="board-top">
+                <span>arya / profil</span
+                ><span class="board-dots" aria-hidden="true"
+                  ><i></i><i></i><i></i
+                ></span>
+              </div>
+              <div class="portrait-frame">
+                <img
+                  src="assets/images/portrait.webp"
+                  alt="Arya Sukma Putra Dwika dengan latar langit biru"
+                  width="864"
+                  height="1184"
+                  fetchpriority="high"
+                />
+                <div class="portrait-label">
+                  <strong>Teknologi. Strategi. Cerita.</strong>
+                  <p>
+                    <svg class="icon" aria-hidden="true">
+                      <use href="#i-pin"></use>
+                    </svg>
+                    Pontianak, Indonesia
+                  </p>
                 </div>
               </div>
-              <p class="scene-caption">
-                <span class="scene-line"></span>Satu perspektif. Banyak
-                kemungkinan.
-              </p>
+              <div class="board-bottom">
+                <span
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-code"></use></svg
+                  >Development</span
+                ><span
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-megaphone"></use></svg
+                  >Marketing</span
+                ><span
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-pen"></use></svg
+                  >Creative</span
+                >
+              </div>
             </div>
           </div>
           <div class="hero-bottom">
             <div class="expertise-strip">
-              <span>IT &amp; Web Development</span><span>Digital Marketing</span
+              <span>IT & Web Development</span><span>Digital Marketing</span
               ><span>Visual Storytelling</span>
             </div>
             <a class="scroll-link" href="#video-gallery"
-              ><span class="scroll-track" aria-hidden="true"></span>Scroll untuk
-              menjelajah<svg class="icon" aria-hidden="true">
+              >Kenali karya saya
+              <svg class="icon" aria-hidden="true">
                 <use href="#i-arrow-down"></use></svg
             ></a>
           </div>
@@ -424,8 +374,8 @@
         <div class="shell">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Karya &amp; cerita</p>
-              <h2 id="work-title">Ide menjadi <em>adegan.</em></h2>
+              <p class="eyebrow">Portofolio pilihan</p>
+              <h2 id="work-title">Dari sistem ke layar.</h2>
             </div>
             <p>
               Proyek teknologi, presentasi, dan karya video. Dua sisi keahlian
@@ -466,11 +416,10 @@
               9 video portofolio
             </p>
           </div>
-          <div class="work-grid cinematic-reels">
+          <div class="work-grid">
             <article class="work-card" x-show="visibleWork('tech', 0)">
               <a
-                class="work-link tilt-surface"
-                data-tilt="card"
+                class="work-link"
                 href="https://www.youtube.com/watch?v=pliWiGHHj1g"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -511,8 +460,7 @@
             </article>
             <article class="work-card" x-show="visibleWork('tech', 1)">
               <a
-                class="work-link tilt-surface"
-                data-tilt="card"
+                class="work-link"
                 href="https://www.youtube.com/watch?v=h29RqPYDa9c"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -554,8 +502,7 @@
             </article>
             <article class="work-card" x-show="visibleWork('tech', 2)">
               <a
-                class="work-link tilt-surface"
-                data-tilt="card"
+                class="work-link"
                 href="https://www.youtube.com/watch?v=hUPAWhSVXXQ"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -592,8 +539,7 @@
             </article>
             <article class="work-card" x-show="visibleWork('creative', 3)">
               <a
-                class="work-link tilt-surface"
-                data-tilt="card"
+                class="work-link"
                 href="https://www.youtube.com/watch?v=LSg3Zj4mDUo"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -629,8 +575,7 @@
             </article>
             <article class="work-card" x-show="visibleWork('creative', 4)">
               <a
-                class="work-link tilt-surface"
-                data-tilt="card"
+                class="work-link"
                 href="https://www.youtube.com/watch?v=js2xv7p6s08"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -668,8 +613,7 @@
             </article>
             <article class="work-card" x-show="visibleWork('creative', 5)">
               <a
-                class="work-link tilt-surface"
-                data-tilt="card"
+                class="work-link"
                 href="https://www.youtube.com/watch?v=zJORup4jtLs"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -707,8 +651,7 @@
             </article>
             <article class="work-card" x-show="visibleWork('creative', 6)">
               <a
-                class="work-link tilt-surface"
-                data-tilt="card"
+                class="work-link"
                 href="https://www.youtube.com/watch?v=4m6YnfGIn5M"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -746,8 +689,7 @@
             </article>
             <article class="work-card" x-show="visibleWork('creative', 7)">
               <a
-                class="work-link tilt-surface"
-                data-tilt="card"
+                class="work-link"
                 href="https://drive.google.com/file/d/1intUqCb3BbGpXZR5Ren-znoRECjYd0_D/view"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -783,8 +725,7 @@
             </article>
             <article class="work-card" x-show="visibleWork('creative', 8)">
               <a
-                class="work-link tilt-surface"
-                data-tilt="card"
+                class="work-link"
                 href="https://www.youtube.com/watch?v=Xf8iqOqNFmU"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -993,7 +934,7 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">Keahlian & perangkat</p>
-              <h2 id="skills-title">Di balik setiap <em>karya.</em></h2>
+              <h2 id="skills-title">Teknis, sekaligus kreatif.</h2>
             </div>
             <p>
               Dari merawat sistem sampai menyampaikan cerita. Keahlian yang saya
@@ -1070,7 +1011,7 @@
           <div class="section-heading">
             <div>
               <p class="eyebrow">Di balik pekerjaan</p>
-              <h2 id="gallery-title">Di luar <em>bingkai.</em></h2>
+              <h2 id="gallery-title">Orang, momen, kolaborasi.</h2>
             </div>
             <div>
               <p class="muted text-sm">
@@ -1085,8 +1026,7 @@
           </div>
           <div class="gallery-grid" id="photo-grid">
             <a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-8.webp"
               data-photo
               x-show="showAllPhotos || 0 < 6"
@@ -1102,8 +1042,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-9.webp"
               data-photo
               x-show="showAllPhotos || 1 < 6"
@@ -1119,8 +1058,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-5.webp"
               data-photo
               x-show="showAllPhotos || 2 < 6"
@@ -1136,8 +1074,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-15.webp"
               data-photo
               x-show="showAllPhotos || 3 < 6"
@@ -1153,8 +1090,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1.webp"
               data-photo
               x-show="showAllPhotos || 4 < 6"
@@ -1170,8 +1106,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-1.webp"
               data-photo
               x-show="showAllPhotos || 5 < 6"
@@ -1187,8 +1122,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-10.webp"
               data-photo
               x-show="showAllPhotos || 6 < 6"
@@ -1204,8 +1138,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-4.webp"
               data-photo
               x-show="showAllPhotos || 7 < 6"
@@ -1221,8 +1154,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-13.webp"
               data-photo
               x-show="showAllPhotos || 8 < 6"
@@ -1238,8 +1170,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-12.webp"
               data-photo
               x-show="showAllPhotos || 9 < 6"
@@ -1255,8 +1186,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-17.webp"
               data-photo
               x-show="showAllPhotos || 10 < 6"
@@ -1272,8 +1202,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-11.webp"
               data-photo
               x-show="showAllPhotos || 11 < 6"
@@ -1289,8 +1218,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-6.webp"
               data-photo
               x-show="showAllPhotos || 12 < 6"
@@ -1306,8 +1234,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-7.webp"
               data-photo
               x-show="showAllPhotos || 13 < 6"
@@ -1323,8 +1250,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-14.webp"
               data-photo
               x-show="showAllPhotos || 14 < 6"
@@ -1340,8 +1266,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-16.webp"
               data-photo
               x-show="showAllPhotos || 15 < 6"
@@ -1357,8 +1282,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-2.webp"
               data-photo
               x-show="showAllPhotos || 16 < 6"
@@ -1374,8 +1298,7 @@
                 ><svg class="icon" aria-hidden="true">
                   <use href="#i-expand"></use></svg></span></a
             ><a
-              class="gallery-item tilt-surface"
-              data-tilt="photo"
+              class="gallery-item"
               href="assets/images/1-3.webp"
               data-photo
               x-show="showAllPhotos || 17 < 6"
