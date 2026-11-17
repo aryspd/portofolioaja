@@ -2891,6 +2891,41 @@ svg.icon {
   opacity: 0.45;
 }
 
+/* Full-bleed Photo Cover for LinkedIn / Documentation Cards */
+.work-art-photo::before {
+  display: none;
+}
+.work-art-photo .work-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.work-card:hover .work-art-photo .work-cover-img {
+  transform: scale(1.06);
+}
+.work-art-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 15, 18, 0.72) 0%,
+    rgba(4, 15, 18, 0.20) 45%,
+    rgba(4, 15, 18, 0.86) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+.work-art-photo .art-meta,
+.work-art-photo .art-caption {
+  z-index: 2;
+}
+
 /* Responsive queries */
 @media (max-width: 1024px) {
   .featured-layout {
