@@ -153,6 +153,50 @@
           />
           <circle cx="12" cy="12" r="4" />
         </symbol>
+        <symbol id="i-satellite" viewBox="0 0 24 24">
+          <path d="m13 2 9 9-4 4-9-9 4-4ZM5 14l-3 3 2 2 3-3M2 22l4-4M10 6 6 10M14 10l-4 4M17 13l-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-seismic" viewBox="0 0 24 24">
+          <path d="M2 12h5l2.5-6 4 12 3-8 2.5 4H22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="3 3"/>
+        </symbol>
+        <symbol id="i-map-poly" viewBox="0 0 24 24">
+          <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="9" y1="3" x2="9" y2="18" stroke="currentColor" stroke-width="1.8"/>
+          <line x1="15" y1="6" x2="15" y2="21" stroke="currentColor" stroke-width="1.8"/>
+        </symbol>
+        <symbol id="i-forest" viewBox="0 0 24 24">
+          <path d="m12 2 5 7h-3l4 6h-4l3 5H7l3-5H6l4-6H7l5-7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 20v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-folder-vector" viewBox="0 0 24 24">
+          <path d="M3 7v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-7l-2-2H5a2 2 0 0 0-2 2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="14" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <path d="m10.5 12.5-2-2M13.5 15.5l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-wind" viewBox="0 0 24 24">
+          <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2M9.6 4.6A2 2 0 1 1 11 8H2M12.6 19.4A2 2 0 1 0 14 16H2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="i-target" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <line x1="12" y1="2" x2="12" y2="6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="12" y1="18" x2="12" y2="22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="2" y1="12" x2="6" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="18" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </symbol>
+        <symbol id="i-globe-net" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <ellipse cx="12" cy="12" rx="4.5" ry="10" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <line x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="1.8"/>
+        </symbol>
+        <symbol id="i-eye-preview" viewBox="0 0 24 24">
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        </symbol>
+        <symbol id="i-sparkle" viewBox="0 0 24 24">
+          <path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z" fill="currentColor"/>
+        </symbol>
         <symbol id="i-phone" viewBox="0 0 24 24">
           <path
             d="M8 3H4v3a15 15 0 0 0 15 15h2v-4l-5-2-2 2a10 10 0 0 1-7-7l2-2-1-5Z"
@@ -191,7 +235,7 @@
                 class="nav-featured-badge"
                 :aria-current="activeSection === 'featured-project' ? 'location' : null"
                 @click="menuOpen = false"
-                >✨ 3D Geo Viewer</a
+                ><svg class="icon icon-sm" aria-hidden="true" style="width:14px;height:14px;"><use href="#i-globe-net"></use></svg><span>Indonesia Geo Viewer</span></a
               >
             </li>
             <li>
@@ -278,22 +322,24 @@
         <div class="shell">
           <div class="hero-layout">
             <div class="hero-copy">
-              <p class="eyebrow">Informatika × Web GIS &amp; 3D Geospasial</p>
+              <p class="eyebrow">Informatika × Desain × Pemasaran × Geospasial</p>
               <h1 id="hero-title">Arya Sukma<br /><span>Putra Dwika.</span></h1>
               <p class="hero-intro">
-                Lulusan Informatika &amp; Praktisi Spasial yang menghubungkan
-                <strong>pengembangan web GIS &amp; sistem 3D</strong> dengan
-                <strong>analisis geospasial Nusantara</strong>. Pengembang
+                Lulusan Informatika &amp; Praktisi Teknologi yang menghubungkan 4 pilar kompetensi:
+                <strong>IT &amp; Web Development</strong>,
+                <strong>Desain &amp; Visual</strong>,
+                <strong>Digital Marketing</strong>, serta
+                <strong>GIS &amp; Data Analytics</strong>. Pengembang
                 <a href="#featured-project" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;"><strong>Indonesia Geo Viewer</strong></a>,
-                berpengalaman dalam Web GIS, Remote Sensing, citra satelit NASA &amp; BMKG, serta infrastruktur IT modern.
+                berfokus pada sistem informasi geospasial Nusantara, infrastruktur web modern, dan strategi kreatif digital.
               </p>
               <div class="hero-actions">
                 <a class="btn btn-primary" href="https://aryspd.github.io/indonesia-geo-viewer/" target="_blank" rel="noopener noreferrer"
-                  >Buka 3D Geo Viewer
+                  >Buka Indonesia Geo Viewer
                   <svg class="icon" aria-hidden="true">
                     <use href="#i-arrow-up-right"></use></svg></a
                 ><a class="btn btn-secondary" href="#featured-project"
-                  >Karya Unggulan 3D
+                  >Karya Unggulan
                   <svg class="icon" aria-hidden="true">
                     <use href="#i-arrow-down"></use></svg
                 ></a>
@@ -339,7 +385,7 @@
                   fetchpriority="high"
                 />
                 <div class="portrait-label">
-                  <strong>Web GIS 3D. Remote Sensing. Spatial Analytics.</strong>
+                  <strong>IT. Desain. Marketing. GIS &amp; Analytics.</strong>
                   <p>
                     <svg class="icon" aria-hidden="true">
                       <use href="#i-pin"></use>
@@ -352,25 +398,29 @@
                 <span
                   ><svg class="icon" aria-hidden="true">
                     <use href="#i-code"></use></svg
-                  >Web GIS 3D</span
-                ><span
-                  ><svg class="icon" aria-hidden="true">
-                    <use href="#i-megaphone"></use></svg
-                  >Data Analytics</span
+                  >IT &amp; Web</span
                 ><span
                   ><svg class="icon" aria-hidden="true">
                     <use href="#i-pen"></use></svg
-                  >Remote Sensing</span
+                  >Desain &amp; Visual</span
+                ><span
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-megaphone"></use></svg
+                  >Digital Marketing</span
+                ><span
+                  ><svg class="icon" aria-hidden="true">
+                    <use href="#i-layers"></use></svg
+                  >GIS &amp; Analytics</span
                 >
               </div>
             </div>
           </div>
           <div class="hero-bottom">
             <div class="expertise-strip">
-              <span>Web GIS 3D &amp; MapLibre</span><span>NASA VIIRS &amp; BMKG</span><span>Batas 38 Provinsi BIG</span><span>Spatial Analytics</span><span>Remote Sensing</span><span>Frontend Development</span>
+              <span>IT &amp; Web Development</span><span>Desain &amp; Visual</span><span>Digital Marketing</span><span>GIS &amp; Data Analytics</span><span>MapLibre GL &amp; Remote Sensing</span>
             </div>
             <a class="scroll-link" href="#featured-project"
-              >Jelajahi 3D Showcase
+              >Jelajahi Karya Unggulan
               <svg class="icon" aria-hidden="true">
                 <use href="#i-arrow-down"></use></svg
             ></a>
@@ -378,7 +428,7 @@
         </div>
       </section>
       <!-- =================================================================
-           FEATURED PROJECT: INDONESIA GEO VIEWER (3D GEOSPATIAL SHOWCASE)
+           FEATURED PROJECT: INDONESIA GEO VIEWER (GEOSPATIAL SHOWCASE)
            ================================================================= -->
       <section
         id="featured-project"
@@ -388,63 +438,110 @@
         <div class="shell">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Karya Unggulan &amp; Geospasial 3D</p>
+              <p class="eyebrow">Karya Unggulan Geospasial Nusantara</p>
               <h2 id="featured-title">INDONESIA GEO VIEWER</h2>
             </div>
             <p>
               Sistem Informasi Geospasial Nusantara terpadu dengan 20+ layer data,
-              citra satelit NASA FIRMS &amp; BMKG real-time, serta pemodelan spasial 3D.
+              citra satelit NASA FIRMS &amp; BMKG real-time, serta analisis spasial interaktif.
             </p>
           </div>
 
           <div class="featured-layout">
-            <!-- Left Column: 3D Interactive WebGL Globe -->
+            <!-- Left Column: Mini Website Console Embed -->
             <div class="globe-console-card" data-3d-tilt>
               <div class="console-header">
                 <div class="console-status">
                   <span class="status-pulse-dot"></span>
-                  <span>3D DIGITAL TWIN NUSANTARA</span>
+                  <span>PORTAL GEOSPASIAL NUSANTARA</span>
                 </div>
                 <div>DATUM: WGS84 (EPSG:4326)</div>
               </div>
 
-              <div class="globe-3d-viewport" title="Klik dan geser untuk memutar bola dunia 3D">
-                <div id="nusantara-globe-3d-canvas"></div>
-                <div class="globe-hud-overlay">
-                  <div class="hud-top">
-                    <div class="hud-badge">
-                      KOORDINAT BASIS
-                      <span>-0.0263° S, 109.3425° E (Pontianak)</span>
-                    </div>
-                    <div class="hud-badge" style="text-align:right;">
-                      SINKRONISASI SATELIT
-                      <span>NASA VIIRS &amp; COPERNICUS</span>
+              <!-- Live Mini Website Embed of Indonesia Geo Viewer -->
+              <div class="mini-site-viewport" id="geo-viewer-mini-console">
+                <!-- Mini Website Top Control Bar -->
+                <div class="mini-site-topbar">
+                  <div class="mini-site-dots" aria-hidden="true">
+                    <span class="mini-dot mini-dot-red"></span>
+                    <span class="mini-dot mini-dot-yellow"></span>
+                    <span class="mini-dot mini-dot-green"></span>
+                  </div>
+                  <div class="mini-site-address">
+                    <svg class="icon icon-sm" aria-hidden="true"><use href="#i-globe-net"></use></svg>
+                    <span class="address-text">https://aryspd.github.io/indonesia-geo-viewer/</span>
+                    <span class="mini-live-tag"><span class="status-pulse-dot"></span> LIVE WEB GIS</span>
+                  </div>
+                  <div class="mini-site-actions">
+                    <button
+                      type="button"
+                      class="mini-action-btn"
+                      id="btn-toggle-interaction"
+                      onclick="toggleMapInteraction()"
+                      title="Klik untuk mengaktifkan kontrol mouse/scroll pada peta"
+                    >
+                      <svg class="icon icon-sm" aria-hidden="true"><use href="#i-target"></use></svg>
+                      <span id="interaction-text">Aktifkan Kontrol Peta</span>
+                    </button>
+                    <a
+                      href="https://aryspd.github.io/indonesia-geo-viewer/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mini-action-btn mini-action-launch"
+                      title="Buka Indonesia Geo Viewer layar penuh di tab baru"
+                    >
+                      <span>Buka Penuh</span>
+                      <svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Mini Website Frame Container -->
+                <div class="mini-iframe-container" id="mini-iframe-wrapper">
+                  <iframe
+                    id="geo-viewer-embedded-frame"
+                    src="https://aryspd.github.io/indonesia-geo-viewer/"
+                    title="INDONESIA GEO VIEWER — Sistem Informasi Geospasial Nusantara"
+                    loading="lazy"
+                    allow="geolocation; fullscreen"
+                  ></iframe>
+
+                  <!-- Click to interact overlay prevents scroll trapping on page until user deliberately clicks it -->
+                  <div
+                    class="mini-map-overlay"
+                    id="mini-map-overlay"
+                    onclick="enableMapInteraction()"
+                  >
+                    <div class="overlay-badge-cta">
+                      <svg class="icon" aria-hidden="true"><use href="#i-target"></use></svg>
+                      <span>Klik di sini untuk mengoperasikan peta langsung</span>
                     </div>
                   </div>
-                  <div class="hud-bottom">
-                    <div class="hud-telemetry">
-                      <strong>STATUS SISTEM:</strong> 38 Provinsi BIG STIG &bull; Titik Api VIIRS NRT &bull; TEWS Gempa BMKG &bull; Laju Hujan GPM &bull; Partikel Angin GFS
-                    </div>
-                    <div class="globe-hud-controls">
-                      <button id="btn-3d-focus-nusantara" type="button" class="hud-ctrl-btn" title="Fokuskan kamera ke Nusantara">
-                        🎯 Fokus Nusantara
-                      </button>
-                      <button id="btn-3d-toggle-rotate" type="button" class="hud-ctrl-btn active" title="Nyalakan/matikan rotasi otomatis">
-                        🌐 Rotasi 360°
-                      </button>
-                    </div>
+                </div>
+
+                <!-- HUD Telemetry Footer inside the card -->
+                <div class="mini-site-hud-footer">
+                  <div class="hud-telemetry-strip">
+                    <span class="hud-item"><strong>KOORDINAT BASIS:</strong> -0.0263° S, 109.3425° E (Pontianak)</span>
+                    <span class="hud-divider">&bull;</span>
+                    <span class="hud-item"><strong>SATELIT:</strong> NASA VIIRS NRT (Hotspot) &amp; BMKG TEWS</span>
+                    <span class="hud-divider">&bull;</span>
+                    <span class="hud-item"><strong>WILAYAH:</strong> Batas 38 Provinsi BIG STIG 2026</span>
                   </div>
                 </div>
               </div>
 
               <div class="console-footer">
                 <div class="console-footer-nodes">
-                  <span class="node-pill"><i style="background:#65d9ed;"></i> Pontianak</span>
+                  <span class="node-pill"><i style="background:#65d9ed;"></i> Pontianak (Base)</span>
                   <span class="node-pill"><i style="background:#f59e0b;"></i> IKN Nusantara</span>
-                  <span class="node-pill"><i style="background:#3b82f6;"></i> Jakarta</span>
+                  <span class="node-pill"><i style="background:#3b82f6;"></i> Jakarta (Data Hub)</span>
                   <span class="node-pill"><i style="background:#10b981;"></i> Jayapura</span>
                 </div>
-                <div>3D WebGL Engine &bull; Three.js</div>
+                <div class="console-engine-label">
+                  <svg class="icon icon-sm" aria-hidden="true"><use href="#i-layers"></use></svg>
+                  <span>Engine: MapLibre GL &bull; Web GIS</span>
+                </div>
               </div>
             </div>
 
@@ -470,49 +567,61 @@
 
               <p class="featured-lead">
                 Platform Web GIS modern karya <strong>Arya Sukma Putra Dwika</strong> yang menggabungkan
-                analisis spasial interaktif, mitigasi kebencanaan nasional, dan kecerdasan penginderaan jauh
-                dalam satu dashboard performa tinggi berbasis MapLibre GL dan React.
+                keahlian <strong>IT &amp; Web Development</strong>, <strong>GIS &amp; Data Analytics</strong>, serta <strong>Desain &amp; Visual</strong>
+                dalam satu dashboard performa tinggi berbasis MapLibre GL dan React untuk analisis spasial dan mitigasi kebencanaan nasional.
               </p>
 
-              <!-- Grid of 6 Key Features -->
+              <!-- Grid of 6 Key Features with Real SVG Icons -->
               <div class="gis-highlights-grid">
                 <div class="gis-highlight-card">
-                  <span class="gis-highlight-icon">🛰️</span>
+                  <span class="gis-highlight-icon">
+                    <svg class="icon" aria-hidden="true"><use href="#i-satellite"></use></svg>
+                  </span>
                   <div class="gis-highlight-body">
                     <strong>NASA FIRMS VIIRS NRT</strong>
                     <p>Deteksi titik panas (hotspot) kebakaran hutan multi-sensor satelit Suomi-NPP, NOAA-20 &amp; NOAA-21.</p>
                   </div>
                 </div>
                 <div class="gis-highlight-card">
-                  <span class="gis-highlight-icon">🌋</span>
+                  <span class="gis-highlight-icon">
+                    <svg class="icon" aria-hidden="true"><use href="#i-seismic"></use></svg>
+                  </span>
                   <div class="gis-highlight-body">
                     <strong>BMKG TEWS &amp; USGS</strong>
                     <p>Peringatan dini gempa bumi real-time, status tsunami, dan polygon peringatan cuaca ekstrem CAP.</p>
                   </div>
                 </div>
                 <div class="gis-highlight-card">
-                  <span class="gis-highlight-icon">🗺️</span>
+                  <span class="gis-highlight-icon">
+                    <svg class="icon" aria-hidden="true"><use href="#i-map-poly"></use></svg>
+                  </span>
                   <div class="gis-highlight-body">
-                    <strong>Batas 38 Provinsi 2026</strong>
+                    <strong>Batas 38 Provinsi BIG</strong>
                     <p>Polygon batas resmi Badan Informasi Geospasial (BIG STIG) termasuk pemekaran wilayah Nusantara.</p>
                   </div>
                 </div>
                 <div class="gis-highlight-card">
-                  <span class="gis-highlight-icon">🌲</span>
+                  <span class="gis-highlight-icon">
+                    <svg class="icon" aria-hidden="true"><use href="#i-forest"></use></svg>
+                  </span>
                   <div class="gis-highlight-body">
                     <strong>Global Forest Watch</strong>
                     <p>Tutupan tajuk pohon, sebaran lahan gambut, habitat mangrove, &amp; konsesi perkebunan/HTI.</p>
                   </div>
                 </div>
                 <div class="gis-highlight-card">
-                  <span class="gis-highlight-icon">📁</span>
+                  <span class="gis-highlight-icon">
+                    <svg class="icon" aria-hidden="true"><use href="#i-folder-vector"></use></svg>
+                  </span>
                   <div class="gis-highlight-body">
                     <strong>Engine Vektor 75 MB</strong>
                     <p>Impor mandiri berkas GeoJSON &amp; ZIP Shapefile (.shp, .dbf, .prj) langsung di sisi klien.</p>
                   </div>
                 </div>
                 <div class="gis-highlight-card">
-                  <span class="gis-highlight-icon">💨</span>
+                  <span class="gis-highlight-icon">
+                    <svg class="icon" aria-hidden="true"><use href="#i-wind"></use></svg>
+                  </span>
                   <div class="gis-highlight-body">
                     <strong>GFS Dynamic Wind</strong>
                     <p>Visualisasi aliran partikel angin beranimasi halus dengan data pergerakan atmosfer global.</p>
@@ -525,7 +634,7 @@
                 <span class="gis-stack-pill">React 18</span>
                 <span class="gis-stack-pill">TypeScript</span>
                 <span class="gis-stack-pill">MapLibre GL</span>
-                <span class="gis-stack-pill">Three.js 3D</span>
+                <span class="gis-stack-pill">Analisis Spasial</span>
                 <span class="gis-stack-pill">Vite</span>
                 <span class="gis-stack-pill">Tailwind CSS</span>
                 <span class="gis-stack-pill">Express REST API</span>
@@ -547,7 +656,8 @@
                   </svg>
                 </a>
                 <a class="btn-featured-secondary" href="#workstation-preview">
-                  <span>Simulasi Fitur Peta 👁️</span>
+                  <svg class="icon" aria-hidden="true"><use href="#i-eye-preview"></use></svg>
+                  <span>Simulasi Fitur Peta</span>
                 </a>
                 <a
                   class="btn-featured-secondary"
@@ -596,7 +706,8 @@
                 onclick="setGISTab('hotspot')"
                 role="tab"
               >
-                🛰️ Satelit VIIRS Hotspots
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#i-satellite"></use></svg>
+                <span>Satelit VIIRS Hotspots</span>
               </button>
               <button
                 type="button"
@@ -605,7 +716,8 @@
                 onclick="setGISTab('provinces')"
                 role="tab"
               >
-                🗺️ Batas 38 Provinsi 2026
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#i-map-poly"></use></svg>
+                <span>Batas 38 Provinsi 2026</span>
               </button>
               <button
                 type="button"
@@ -614,7 +726,8 @@
                 onclick="setGISTab('bmkg')"
                 role="tab"
               >
-                🌋 Gempa &amp; Cuaca BMKG
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#i-seismic"></use></svg>
+                <span>Gempa &amp; Cuaca BMKG</span>
               </button>
               <button
                 type="button"
@@ -623,7 +736,8 @@
                 onclick="setGISTab('vector')"
                 role="tab"
               >
-                📁 Impor Shapefile &amp; GeoJSON
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#i-folder-vector"></use></svg>
+                <span>Impor Shapefile &amp; GeoJSON</span>
               </button>
             </div>
 
@@ -651,7 +765,7 @@
                   </svg>
                   <div class="sim-radar-sweep"></div>
                   <div class="sim-overlay-telemetry">
-                    🛰️ VIIRS NRT: 12 Hotspot Aktif (Kalbar, Riau, Sumsel) &bull; Confidence: 88-99%
+                    <svg class="icon icon-sm" aria-hidden="true" style="display:inline;vertical-align:-2px;"><use href="#i-satellite"></use></svg> VIIRS NRT: 12 Hotspot Aktif (Kalbar, Riau, Sumsel) &bull; Confidence: 88-99%
                   </div>
                 </div>
                 <div class="sim-info-body">
@@ -697,7 +811,7 @@
                     <text x="282" y="174" fill="#f59e0b" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="bold">IKN NUSANTARA</text>
                   </svg>
                   <div class="sim-overlay-telemetry">
-                    🗺️ BIG STIG: 38 Provinsi Termutakhir &bull; EPSG:4326 GeoJSON MultiPolygon
+                    <svg class="icon icon-sm" aria-hidden="true" style="display:inline;vertical-align:-2px;"><use href="#i-map-poly"></use></svg> BIG STIG: 38 Provinsi Termutakhir &bull; EPSG:4326 GeoJSON MultiPolygon
                   </div>
                 </div>
                 <div class="sim-info-body">
@@ -741,7 +855,7 @@
                     <text x="195" y="278" fill="#f43f5e" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="bold">GEMPA M 5.4 · KEDALAMAN 10 KM (BMKG)</text>
                   </svg>
                   <div class="sim-overlay-telemetry">
-                    🌋 BMKG TEWS: Terhubung &bull; Status Tsunami: AMAN &bull; CAP Nowcast: AKTIF
+                    <svg class="icon icon-sm" aria-hidden="true" style="display:inline;vertical-align:-2px;"><use href="#i-seismic"></use></svg> BMKG TEWS: Terhubung &bull; Status Tsunami: AMAN &bull; CAP Nowcast: AKTIF
                   </div>
                 </div>
                 <div class="sim-info-body">
@@ -796,7 +910,7 @@
                     <text x="210" y="130" fill="#10b981" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="bold">KONSESI_SAWIT.SHP</text>
                   </svg>
                   <div class="sim-overlay-telemetry">
-                    📁 VECTOR ENGINE: GeoJSON &bull; Shapefile ZIP (Maks 75 MB) &bull; Auto Reproject WGS84
+                    <svg class="icon icon-sm" aria-hidden="true" style="display:inline;vertical-align:-2px;"><use href="#i-folder-vector"></use></svg> VECTOR ENGINE: GeoJSON &bull; Shapefile ZIP (Maks 75 MB) &bull; Auto Reproject WGS84
                   </div>
                 </div>
                 <div class="sim-info-body">
@@ -857,21 +971,28 @@
                 :aria-pressed="workFilter === 'gis'"
                 @click="setFilter('gis')"
               >
-                Web GIS 3D</button
+                GIS &amp; Data Analytics</button
               ><button
                 type="button"
                 class="filter-button"
                 :aria-pressed="workFilter === 'tech'"
                 @click="setFilter('tech')"
               >
-                Teknologi</button
+                IT &amp; Web Development</button
               ><button
                 type="button"
                 class="filter-button"
                 :aria-pressed="workFilter === 'creative'"
                 @click="setFilter('creative')"
               >
-                Video kreatif
+                Desain &amp; Visual</button
+              ><button
+                type="button"
+                class="filter-button"
+                :aria-pressed="workFilter === 'marketing'"
+                @click="setFilter('marketing')"
+              >
+                Digital Marketing
               </button>
             </div>
             <p
@@ -894,10 +1015,10 @@
               >
                 <div class="work-art art-gis-map" aria-hidden="true">
                   <div class="art-meta">
-                    <span>Web GIS 3D</span><span class="art-tag" style="background:#0ea5e9;color:#fff;">LIVE APP</span>
+                    <span>Web GIS</span><span class="art-tag" style="background:#0ea5e9;color:#fff;">LIVE APP</span>
                   </div>
                   <div class="tree-art" style="flex-direction:column;gap:0.4rem;align-items:center;">
-                    <span style="font-size:2.2rem;line-height:1;">🗺️</span>
+                    <svg class="icon" style="width:42px;height:42px;color:var(--accent);" aria-hidden="true"><use href="#i-map-poly"></use></svg>
                     <strong style="color:var(--accent);font-family:var(--font-display);font-size:0.95rem;letter-spacing:-0.02em;">INDONESIA GEO VIEWER</strong>
                     <span style="font-size:0.7rem;color:var(--muted);font-family:var(--font-code);">20+ Layer &bull; 38 Provinsi &bull; Satelit NRT</span>
                   </div>
@@ -907,7 +1028,7 @@
                   </span>
                 </div>
                 <div class="work-body">
-                  <p class="card-kicker">Web GIS &bull; Remote Sensing &bull; MapLibre GL</p>
+                  <p class="card-kicker">GIS &amp; Data Analytics &bull; Web GIS</p>
                   <h3>Indonesia Geo Viewer</h3>
                   <p>Sistem Informasi Geospasial Nusantara &bull; React &amp; TypeScript</p>
                   <div class="work-footer" style="color:var(--accent);font-weight:700;">
@@ -1307,6 +1428,9 @@
                   <p class="timeline-date">2026</p>
                   <h3>Bootcamp 0°Latitude Academy Batch 1</h3>
                   <p class="timeline-org">Inovasi Digital</p>
+                  <div>
+                    <span class="exp-pillar-pill pillar-gis">GIS &amp; Data Analytics</span>
+                  </div>
                   <ul>
                     <li>Melakukan analisis spasial dan pemetaan wilayah menggunakan perangkat GIS untuk mendukung pemantauan perkebunan, hutan, dan lanskap lingkungan.</li>
                     <li>Mengolah dan menginterpretasikan citra satelit (Sentinel, Landsat, dan PlanetScope) untuk memantau perubahan tutupan lahan serta mendeteksi indikasi deforestasi.</li>
@@ -1320,6 +1444,10 @@
                   <p class="timeline-date">2026</p>
                   <h3>IT Development Specialist &amp; Digital Marketing</h3>
                   <p class="timeline-org">PT Alfasyimar Visual Technology</p>
+                  <div>
+                    <span class="exp-pillar-pill pillar-it">IT &amp; Web Development</span>
+                    <span class="exp-pillar-pill pillar-marketing">Digital Marketing</span>
+                  </div>
                   <ul>
                     <li>
                       Mengembangkan sistem aplikasi Alfateve (Drama &amp; Film)
@@ -1341,6 +1469,10 @@
                   <p class="timeline-org">
                     Instagram @genz.medianetwork &amp; @localhits_pnk
                   </p>
+                  <div>
+                    <span class="exp-pillar-pill pillar-marketing">Digital Marketing</span>
+                    <span class="exp-pillar-pill pillar-design">Desain &amp; Visual</span>
+                  </div>
                   <ul>
                     <li>
                       Menulis &amp; mengelola konten kreatif di Instagram untuk
@@ -1355,6 +1487,9 @@
                   <p class="timeline-date">2025</p>
                   <h3>Web Infrastructure Developer</h3>
                   <p class="timeline-org">PT Firman&#x27;s Group</p>
+                  <div>
+                    <span class="exp-pillar-pill pillar-it">IT &amp; Web Development</span>
+                  </div>
                   <p class="timeline-desc">
                     Bertanggung jawab dalam pembangunan dan optimalisasi
                     infrastruktur web perusahaan.
@@ -1366,6 +1501,10 @@
                   <p class="timeline-org">
                     Divisi Infokom Univ. Muhammadiyah Pontianak
                   </p>
+                  <div>
+                    <span class="exp-pillar-pill pillar-marketing">Digital Marketing</span>
+                    <span class="exp-pillar-pill pillar-design">Desain &amp; Visual</span>
+                  </div>
                   <p class="timeline-desc">
                     Mengelola strategi komunikasi digital dan informasi di
                     lingkungan universitas.
@@ -1375,6 +1514,9 @@
                   <p class="timeline-date">2024</p>
                   <h3>Desain Grafis Produk</h3>
                   <p class="timeline-org">PT Karya Bujang Abadi</p>
+                  <div>
+                    <span class="exp-pillar-pill pillar-design">Desain &amp; Visual</span>
+                  </div>
                 </li>
               </ol>
             </div>

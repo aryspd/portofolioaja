@@ -194,6 +194,26 @@
         panel.classList.toggle("active", panel.dataset.panel === tabId);
       });
     };
+
+    // Mini Map Iframe Interaction Controls
+    window.toggleMapInteraction = function () {
+      const overlay = document.getElementById("mini-map-overlay");
+      const label = document.getElementById("interaction-text");
+      if (!overlay) return;
+      const isUnlocked = overlay.classList.toggle("unlocked");
+      if (label) {
+        label.textContent = isUnlocked ? "Kunci Kontrol Peta" : "Aktifkan Kontrol Peta";
+      }
+    };
+
+    window.enableMapInteraction = function () {
+      const overlay = document.getElementById("mini-map-overlay");
+      const label = document.getElementById("interaction-text");
+      if (overlay) {
+        overlay.classList.add("unlocked");
+        if (label) label.textContent = "Kunci Kontrol Peta";
+      }
+    };
   }
 
   document.addEventListener("DOMContentLoaded", () => {

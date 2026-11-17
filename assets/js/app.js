@@ -141,15 +141,19 @@ document.addEventListener("alpine:init", () => {
     },
     visibleWork(category, index) {
       if (this.workFilter !== "all") {
-        if (this.workFilter === "tech" && category === "gis") return true;
+        if (this.workFilter === "gis") return category === "gis";
+        if (this.workFilter === "tech") return category === "tech" || category === "gis";
+        if (this.workFilter === "creative") return category === "creative";
+        if (this.workFilter === "marketing") return category === "marketing" || (category === "creative" && (index === 4 || index === 7));
         return this.workFilter === category;
       }
       return this.showAllWork || index < 7;
     },
     workSummary() {
-      if (this.workFilter === "gis") return "1 platform Web GIS unggulan";
-      if (this.workFilter === "tech") return "1 Web GIS + 3 karya teknologi";
-      if (this.workFilter === "creative") return "6 video kreatif";
+      if (this.workFilter === "gis") return "1 platform GIS & Data Analytics";
+      if (this.workFilter === "tech") return "3 proyek IT & Web Development";
+      if (this.workFilter === "creative") return "6 karya Desain & Visual";
+      if (this.workFilter === "marketing") return "2 karya Digital Marketing";
       return this.showAllWork ? "10 dari 10 karya" : "7 dari 10 karya";
     },
     openPhoto(index, trigger) {
