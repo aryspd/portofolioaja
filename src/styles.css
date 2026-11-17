@@ -103,6 +103,7 @@ html {
   scrollbar-gutter: stable;
   scrollbar-color: var(--scroll-thumb) var(--canvas);
   scrollbar-width: thin;
+  overflow-x: clip;
 }
 *::-webkit-scrollbar {
   width: 10px;
@@ -130,7 +131,7 @@ body {
   line-height: 1.65;
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 body.modal-open {
   overflow: hidden;
@@ -1735,18 +1736,15 @@ svg.icon {
     height: 420px;
   }
 }
-@media (max-width: 1100px) {
+@media (max-width: 1180px) {
   .shell {
-    width: calc(100% - 4rem);
+    width: calc(100% - 3.5rem);
   }
   .header-inner {
-    gap: 1.2rem;
+    gap: 0.9rem;
   }
   .nav-links {
-    gap: 1.1rem;
-  }
-  .header-cta {
-    display: none;
+    gap: 0.75rem;
   }
   .hero-layout {
     gap: 2.5rem;
@@ -1771,13 +1769,7 @@ svg.icon {
     gap: 2rem;
   }
 }
-@media (max-width: 800px) {
-  :root {
-    --section-space: 4.5rem;
-  }
-  .shell {
-    width: calc(100% - 3rem);
-  }
+@media (max-width: 1024px) {
   .header-inner {
     height: 56px;
     min-height: 56px;
@@ -1791,7 +1783,8 @@ svg.icon {
     height: auto;
     max-height: none;
     border-radius: 1.25rem;
-    padding-bottom: 0.75rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.85rem;
   }
   .header-actions {
     margin-left: auto;
@@ -1800,10 +1793,13 @@ svg.icon {
     order: 3;
     width: 100%;
     height: auto;
-    padding-block: 0.75rem 1.2rem;
+    padding-block: 0.85rem 0.4rem;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 0.5rem 1.5rem;
+    gap: 0.5rem 0.75rem;
+  }
+  .nav-links li {
+    height: auto;
   }
   .js-ready .nav-links {
     display: none;
@@ -1815,32 +1811,42 @@ svg.icon {
     display: flex;
     height: auto;
   }
+}
+@media (max-width: 800px) {
+  :root {
+    --section-space: 4.5rem;
+  }
+  .shell {
+    width: calc(100% - 2.5rem);
+  }
   .hero {
-    padding-top: 3.4rem;
+    padding-top: 3.2rem;
   }
   .hero-layout {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.6rem;
+    grid-template-columns: 1fr;
+    gap: 2.2rem;
     align-items: start;
   }
   .hero h1 {
-    font-size: clamp(2.7rem, 5.7vw, 3.8rem);
+    font-size: clamp(2.6rem, 6.5vw, 3.8rem);
   }
   .hero-intro {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
   }
   .portrait-frame {
-    height: 350px;
+    height: 360px;
   }
   .board-bottom {
-    grid-template-columns: 1fr;
-    gap: 0.4rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.45rem;
   }
   .board-bottom span {
-    padding: 0.5rem;
+    padding: 0.55rem 0.65rem;
   }
   .portrait-board {
-    margin-top: 2rem;
+    margin-top: 0;
+    max-width: 460px;
+    width: 100%;
   }
   .hero-actions {
     gap: 0.6rem;
@@ -1891,70 +1897,76 @@ svg.icon {
     max-width: 36rem;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .shell {
-    width: calc(100% - 2.25rem);
+    width: calc(100% - 1.75rem);
+  }
+  .site-header {
+    padding: 0.6rem 0.65rem 0;
   }
   .header-inner {
-    min-height: 70px;
+    height: 54px;
+    min-height: 54px;
+    padding: 0 0.85rem;
+  }
+  .header-cta {
+    display: none;
   }
   .wordmark {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
   }
   .monogram {
-    width: 32px;
-    height: 32px;
-    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
   }
   .header-actions {
-    gap: 0.45rem;
-  }
-  .icon-button {
-    width: 42px;
-    height: 42px;
+    gap: 0.4rem;
   }
   .hero {
-    padding-top: 2.6rem;
+    padding-top: 2.2rem;
   }
   .hero-layout {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2.2rem;
   }
   .hero .eyebrow {
     font-size: 0.62rem;
   }
   .hero h1 {
-    font-size: clamp(2.8rem, 10.6vw, 4rem);
-    margin-block: 1.1rem 1.3rem;
+    font-size: clamp(2.35rem, 9.6vw, 3.6rem);
+    margin-block: 0.9rem 1.15rem;
   }
   .hero-intro {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     max-width: 33rem;
   }
   .hero-actions {
-    margin-block: 1.5rem;
+    margin-block: 1.4rem;
+    flex-wrap: wrap;
   }
   .hero-actions .btn {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     padding-inline: 1.1rem;
   }
   .portrait-board {
     transform: none;
     margin-top: 0;
-    border-radius: 1.6rem;
+    border-radius: 1.4rem;
   }
   .portrait-frame {
-    height: 365px;
-    border-radius: 1.1rem;
+    height: 340px;
+    border-radius: 1rem;
     object-position: 50% 42%;
   }
   .board-bottom {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.45rem;
   }
   .board-bottom span {
-    font-size: 0.55rem;
-    padding-block: 0.65rem;
-    gap: 0.3rem;
+    font-size: 0.62rem;
+    padding: 0.55rem 0.5rem;
+    gap: 0.35rem;
   }
   .board-bottom .icon {
     width: 14px;
@@ -2854,11 +2866,13 @@ svg.icon {
 
 /* Web GIS Spotlight Card in Video Gallery */
 .work-card-gis {
-  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
-  background: radial-gradient(circle at top right, rgba(101, 217, 237, 0.08), var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: radial-gradient(circle at top right, rgba(125, 227, 224, 0.08), var(--surface));
 }
 .art-gis-map {
-  background: linear-gradient(135deg, #091a2b 0%, #0d283e 100%);
+  background: radial-gradient(circle at 75% 25%, rgba(16, 185, 129, 0.24) 0%, transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(125, 227, 224, 0.18) 0%, transparent 60%),
+              linear-gradient(135deg, #041619 0%, #08292e 100%);
   position: relative;
   overflow: hidden;
 }
@@ -2866,9 +2880,9 @@ svg.icon {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(101, 217, 237, 0.3) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(125, 227, 224, 0.28) 1px, transparent 1px);
   background-size: 16px 16px;
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 /* Responsive queries */
@@ -2879,6 +2893,9 @@ svg.icon {
   .globe-3d-viewport {
     height: 380px;
   }
+  .mini-iframe-container {
+    height: 400px;
+  }
   .sim-preview-grid {
     grid-template-columns: 1fr;
   }
@@ -2887,8 +2904,41 @@ svg.icon {
   .gis-highlights-grid {
     grid-template-columns: 1fr;
   }
+  .globe-console-card {
+    padding: 0.85rem;
+  }
+  .console-header {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-size: 0.68rem;
+  }
   .globe-3d-viewport {
+    height: 300px;
+  }
+  .mini-iframe-container {
     height: 320px;
+  }
+  .mini-site-topbar {
+    padding: 0.55rem 0.7rem;
+    gap: 0.5rem;
+  }
+  .mini-site-dots {
+    display: none;
+  }
+  .mini-site-address {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .mini-site-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .mini-action-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.45rem 0.6rem;
   }
   .hud-telemetry {
     max-width: 100%;
@@ -2913,8 +2963,8 @@ svg.icon {
   width: 100%;
   border-radius: calc(var(--radius-card) - 0.5rem);
   overflow: hidden;
-  background: #081423;
-  border: 1px solid rgba(101, 217, 237, 0.25);
+  background: #041114;
+  border: 1px solid rgba(125, 227, 224, 0.22);
   display: flex;
   flex-direction: column;
 }
@@ -2925,8 +2975,8 @@ svg.icon {
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.65rem 1rem;
-  background: color-mix(in srgb, var(--surface-2) 85%, black);
-  border-bottom: 1px solid rgba(101, 217, 237, 0.2);
+  background: rgba(5, 19, 22, 0.92);
+  border-bottom: 1px solid rgba(125, 227, 224, 0.16);
   flex-wrap: wrap;
 }
 
@@ -2949,8 +2999,8 @@ svg.icon {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(6, 16, 29, 0.75);
-  border: 1px solid rgba(101, 217, 237, 0.2);
+  background: rgba(4, 15, 18, 0.85);
+  border: 1px solid rgba(125, 227, 224, 0.18);
   padding: 0.3rem 0.75rem;
   border-radius: 9999px;
   font: 0.7rem var(--font-code);
@@ -2983,8 +3033,8 @@ svg.icon {
   gap: 0.5rem;
 }
 .mini-action-btn {
-  background: rgba(17, 30, 48, 0.9);
-  border: 1px solid rgba(101, 217, 237, 0.3);
+  background: rgba(8, 28, 32, 0.92);
+  border: 1px solid rgba(125, 227, 224, 0.28);
   color: var(--text);
   font: 600 0.7rem var(--font-display);
   padding: 0.35rem 0.65rem;
@@ -2995,15 +3045,16 @@ svg.icon {
   gap: 0.35rem;
   text-decoration: none;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 .mini-action-btn:hover {
-  background: var(--surface-2);
+  background: rgba(125, 227, 224, 0.14);
   border-color: var(--accent);
   color: var(--accent);
 }
 .mini-action-launch {
-  background: color-mix(in srgb, var(--accent) 20%, var(--surface));
-  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 18%, rgba(5, 19, 22, 0.9));
+  border-color: rgba(125, 227, 224, 0.5);
   color: var(--accent) !important;
 }
 .mini-action-launch:hover {
@@ -3015,7 +3066,7 @@ svg.icon {
   position: relative;
   width: 100%;
   height: 480px;
-  background: #091a2b;
+  background: #041316;
 }
 .mini-iframe-container iframe {
   width: 100%;
@@ -3027,7 +3078,7 @@ svg.icon {
 .mini-map-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(6, 16, 29, 0.35);
+  background: rgba(4, 15, 18, 0.35);
   backdrop-filter: blur(1px);
   display: flex;
   align-items: center;
@@ -3042,9 +3093,9 @@ svg.icon {
   pointer-events: none;
 }
 .overlay-badge-cta {
-  background: rgba(11, 19, 33, 0.92);
-  border: 1px solid var(--accent);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 20px rgba(101, 217, 237, 0.3);
+  background: rgba(5, 20, 24, 0.92);
+  border: 1px solid rgba(125, 227, 224, 0.55);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 24px rgba(125, 227, 224, 0.25);
   padding: 0.65rem 1.25rem;
   border-radius: 9999px;
   color: var(--text);
@@ -3061,13 +3112,13 @@ svg.icon {
 }
 .mini-map-overlay:hover .overlay-badge-cta {
   transform: scale(1.04);
-  background: color-mix(in srgb, var(--surface-2) 90%, var(--accent));
+  background: rgba(8, 32, 36, 0.96);
 }
 
 .mini-site-hud-footer {
   padding: 0.65rem 1rem;
-  background: color-mix(in srgb, var(--surface) 95%, black);
-  border-top: 1px solid rgba(101, 217, 237, 0.15);
+  background: rgba(4, 15, 18, 0.94);
+  border-top: 1px solid rgba(125, 227, 224, 0.16);
   font: 0.68rem var(--font-code);
   color: var(--muted);
 }
@@ -3136,4 +3187,60 @@ svg.icon {
   width: 14px;
   height: 14px;
   color: var(--accent);
+}
+
+/* ==========================================================================
+   LIGHT THEME GLASS & CONTRAST REFINEMENTS
+   ========================================================================== */
+:root[data-theme="arya-light"] .header-inner {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(2, 130, 128, 0.16);
+  box-shadow: 0 18px 40px -18px rgba(6, 23, 26, 0.14), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+}
+:root[data-theme="arya-light"] .icon-button,
+:root[data-theme="arya-light"] .theme-toggle {
+  background: rgba(2, 130, 128, 0.06);
+  border-color: rgba(2, 130, 128, 0.18);
+  color: var(--text);
+}
+:root[data-theme="arya-light"] .nav-links a.nav-featured-badge,
+:root[data-theme="arya-light"] .nav-featured-badge {
+  background: linear-gradient(135deg, rgba(2, 130, 128, 0.12), rgba(5, 150, 105, 0.12)) !important;
+  border-color: rgba(2, 130, 128, 0.35) !important;
+  color: #027370 !important;
+}
+:root[data-theme="arya-light"] .globe-console-card,
+:root[data-theme="arya-light"] .work-card,
+:root[data-theme="arya-light"] .skill-card,
+:root[data-theme="arya-light"] .portrait-board,
+:root[data-theme="arya-light"] .contact-panel {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(2, 130, 128, 0.16);
+  box-shadow: 0 20px 50px -24px rgba(6, 23, 26, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================================================
+   SMALL MOBILE (<= 420px) PRECISION POLISH
+   ========================================================================== */
+@media (max-width: 420px) {
+  .shell {
+    width: calc(100% - 1.25rem);
+  }
+  .hero h1 {
+    font-size: 2.15rem;
+  }
+  .mini-iframe-container {
+    height: 280px;
+  }
+  .skill-card ul {
+    grid-template-columns: 1fr;
+  }
+  .hud-telemetry-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  .hud-divider {
+    display: none;
+  }
 }
