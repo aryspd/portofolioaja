@@ -140,13 +140,17 @@ document.addEventListener("alpine:init", () => {
       this.showAllWork = false;
     },
     visibleWork(category, index) {
-      if (this.workFilter !== "all") return this.workFilter === category;
-      return this.showAllWork || index < 6;
+      if (this.workFilter !== "all") {
+        if (this.workFilter === "tech" && category === "gis") return true;
+        return this.workFilter === category;
+      }
+      return this.showAllWork || index < 7;
     },
     workSummary() {
-      if (this.workFilter === "tech") return "3 video teknologi";
+      if (this.workFilter === "gis") return "1 platform Web GIS unggulan";
+      if (this.workFilter === "tech") return "1 Web GIS + 3 karya teknologi";
       if (this.workFilter === "creative") return "6 video kreatif";
-      return this.showAllWork ? "9 dari 9 video" : "6 dari 9 video";
+      return this.showAllWork ? "10 dari 10 karya" : "7 dari 10 karya";
     },
     openPhoto(index, trigger) {
       this.focusOrigin = trigger;

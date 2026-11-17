@@ -12,6 +12,7 @@ copy(
   "node_modules/gsap/dist/ScrollTrigger.min.js",
   "assets/vendor/ScrollTrigger.min.js",
 );
+copy("node_modules/three/build/three.module.js", "assets/vendor/three.module.js");
 for (const [family, weights] of [
   ["space-grotesk", [500, 700]],
   ["dm-sans", [400, 600]],

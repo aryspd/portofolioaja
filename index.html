@@ -44,6 +44,8 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
     <script defer src="assets/vendor/gsap.min.js"></script>
     <script defer src="assets/vendor/ScrollTrigger.min.js"></script>
+    <script defer src="assets/js/interactive-3d.js"></script>
+    <script type="module" src="assets/js/geo-globe-3d.js"></script>
     <script defer src="assets/js/app.js"></script>
     <script defer src="assets/vendor/alpine.min.js"></script>
   </head>
@@ -185,6 +187,15 @@
             </li>
             <li>
               <a
+                href="#featured-project"
+                class="nav-featured-badge"
+                :aria-current="activeSection === 'featured-project' ? 'location' : null"
+                @click="menuOpen = false"
+                >✨ 3D Geo Viewer</a
+              >
+            </li>
+            <li>
+              <a
                 href="#video-gallery"
                 :aria-current="activeSection === 'video-gallery' ? 'location' : null"
                 @click="menuOpen = false"
@@ -263,27 +274,28 @@
     </header>
     <main id="main-content" tabindex="-1">
       <section id="home" class="hero" aria-labelledby="hero-title">
+        <canvas id="hero-3d-canvas" aria-hidden="true"></canvas>
         <div class="shell">
           <div class="hero-layout">
             <div class="hero-copy">
-              <p class="eyebrow">Informatika × Kreativitas</p>
+              <p class="eyebrow">Informatika × Web GIS &amp; 3D Geospasial</p>
               <h1 id="hero-title">Arya Sukma<br /><span>Putra Dwika.</span></h1>
               <p class="hero-intro">
-                Lulusan Informatika yang menghubungkan
-                <strong>pengembangan web & sistem</strong> dengan
-                <strong>strategi digital kreatif</strong>. Berpengalaman dalam
-                infrastruktur jaringan, keamanan informasi, pemeliharaan
-                aplikasi, digital marketing, GIS, Remote Sensing & Data Analytics.
+                Lulusan Informatika &amp; Praktisi Spasial yang menghubungkan
+                <strong>pengembangan web GIS &amp; sistem 3D</strong> dengan
+                <strong>analisis geospasial Nusantara</strong>. Pengembang
+                <a href="#featured-project" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;"><strong>Indonesia Geo Viewer</strong></a>,
+                berpengalaman dalam Web GIS, Remote Sensing, citra satelit NASA &amp; BMKG, serta infrastruktur IT modern.
               </p>
               <div class="hero-actions">
-                <a class="btn btn-primary" href="#video-gallery"
-                  >Jelajahi karya
+                <a class="btn btn-primary" href="https://aryspd.github.io/indonesia-geo-viewer/" target="_blank" rel="noopener noreferrer"
+                  >Buka 3D Geo Viewer
                   <svg class="icon" aria-hidden="true">
-                    <use href="#i-arrow-down"></use></svg></a
-                ><a class="btn btn-secondary" href="#contact"
-                  >Hubungi saya
+                    <use href="#i-arrow-up-right"></use></svg></a
+                ><a class="btn btn-secondary" href="#featured-project"
+                  >Karya Unggulan 3D
                   <svg class="icon" aria-hidden="true">
-                    <use href="#i-arrow-up-right"></use></svg
+                    <use href="#i-arrow-down"></use></svg
                 ></a>
               </div>
               <div class="social-links" aria-label="Profil sosial">
@@ -311,7 +323,7 @@
                 >
               </div>
             </div>
-            <div class="portrait-board">
+            <div class="portrait-board" data-3d-tilt>
               <div class="board-top">
                 <span>arya / profil</span
                 ><span class="board-dots" aria-hidden="true"
@@ -327,7 +339,7 @@
                   fetchpriority="high"
                 />
                 <div class="portrait-label">
-                  <strong>Teknologi. GIS. Remote Sensing. Data Analytics.</strong>
+                  <strong>Web GIS 3D. Remote Sensing. Spatial Analytics.</strong>
                   <p>
                     <svg class="icon" aria-hidden="true">
                       <use href="#i-pin"></use>
@@ -340,7 +352,7 @@
                 <span
                   ><svg class="icon" aria-hidden="true">
                     <use href="#i-code"></use></svg
-                  >Development</span
+                  >Web GIS 3D</span
                 ><span
                   ><svg class="icon" aria-hidden="true">
                     <use href="#i-megaphone"></use></svg
@@ -355,18 +367,465 @@
           </div>
           <div class="hero-bottom">
             <div class="expertise-strip">
-              <span>IT & Web Development</span><span>Digital Marketing</span
-              ><span>Visual Storytelling</span><span>Data Analytics</span
-              ><span>GIS</span><span>Remote Sensing</span
+              <span>Web GIS 3D &amp; MapLibre</span><span>NASA VIIRS &amp; BMKG</span><span>Batas 38 Provinsi BIG</span><span>Spatial Analytics</span><span>Remote Sensing</span><span>Frontend Development</span>
             </div>
-            <a class="scroll-link" href="#video-gallery"
-              >Lebih Lanjut
+            <a class="scroll-link" href="#featured-project"
+              >Jelajahi 3D Showcase
               <svg class="icon" aria-hidden="true">
                 <use href="#i-arrow-down"></use></svg
             ></a>
           </div>
         </div>
       </section>
+      <!-- =================================================================
+           FEATURED PROJECT: INDONESIA GEO VIEWER (3D GEOSPATIAL SHOWCASE)
+           ================================================================= -->
+      <section
+        id="featured-project"
+        class="section featured-project-section"
+        aria-labelledby="featured-title"
+      >
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Karya Unggulan &amp; Geospasial 3D</p>
+              <h2 id="featured-title">INDONESIA GEO VIEWER</h2>
+            </div>
+            <p>
+              Sistem Informasi Geospasial Nusantara terpadu dengan 20+ layer data,
+              citra satelit NASA FIRMS &amp; BMKG real-time, serta pemodelan spasial 3D.
+            </p>
+          </div>
+
+          <div class="featured-layout">
+            <!-- Left Column: 3D Interactive WebGL Globe -->
+            <div class="globe-console-card" data-3d-tilt>
+              <div class="console-header">
+                <div class="console-status">
+                  <span class="status-pulse-dot"></span>
+                  <span>3D DIGITAL TWIN NUSANTARA</span>
+                </div>
+                <div>DATUM: WGS84 (EPSG:4326)</div>
+              </div>
+
+              <div class="globe-3d-viewport" title="Klik dan geser untuk memutar bola dunia 3D">
+                <div id="nusantara-globe-3d-canvas"></div>
+                <div class="globe-hud-overlay">
+                  <div class="hud-top">
+                    <div class="hud-badge">
+                      KOORDINAT BASIS
+                      <span>-0.0263° S, 109.3425° E (Pontianak)</span>
+                    </div>
+                    <div class="hud-badge" style="text-align:right;">
+                      SINKRONISASI SATELIT
+                      <span>NASA VIIRS &amp; COPERNICUS</span>
+                    </div>
+                  </div>
+                  <div class="hud-bottom">
+                    <div class="hud-telemetry">
+                      <strong>STATUS SISTEM:</strong> 38 Provinsi BIG STIG &bull; Titik Api VIIRS NRT &bull; TEWS Gempa BMKG &bull; Laju Hujan GPM &bull; Partikel Angin GFS
+                    </div>
+                    <div class="globe-hud-controls">
+                      <button id="btn-3d-focus-nusantara" type="button" class="hud-ctrl-btn" title="Fokuskan kamera ke Nusantara">
+                        🎯 Fokus Nusantara
+                      </button>
+                      <button id="btn-3d-toggle-rotate" type="button" class="hud-ctrl-btn active" title="Nyalakan/matikan rotasi otomatis">
+                        🌐 Rotasi 360°
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="console-footer">
+                <div class="console-footer-nodes">
+                  <span class="node-pill"><i style="background:#65d9ed;"></i> Pontianak</span>
+                  <span class="node-pill"><i style="background:#f59e0b;"></i> IKN Nusantara</span>
+                  <span class="node-pill"><i style="background:#3b82f6;"></i> Jakarta</span>
+                  <span class="node-pill"><i style="background:#10b981;"></i> Jayapura</span>
+                </div>
+                <div>3D WebGL Engine &bull; Three.js</div>
+              </div>
+            </div>
+
+            <!-- Right Column: Project Highlights & Actions -->
+            <div class="featured-details">
+              <div class="featured-kicker-wrap">
+                <span class="badge-live-gis">
+                  <span class="status-pulse-dot"></span>
+                  LIVE PRODUCTION
+                </span>
+                <span class="badge-live-gis" style="border-color:rgba(16,185,129,0.45);color:#10b981;background:rgba(16,185,129,0.1);">
+                  20+ LAYER GEOSPASIAL
+                </span>
+                <span class="badge-live-gis" style="border-color:rgba(245,158,11,0.45);color:#f59e0b;background:rgba(245,158,11,0.1);">
+                  UPDATE 2026
+                </span>
+              </div>
+
+              <h3 class="featured-title">
+                Sistem Informasi Geospasial Nusantara
+                <span>Platform Web GIS &amp; Pemantauan Spasial Kepulauan Indonesia</span>
+              </h3>
+
+              <p class="featured-lead">
+                Platform Web GIS modern karya <strong>Arya Sukma Putra Dwika</strong> yang menggabungkan
+                analisis spasial interaktif, mitigasi kebencanaan nasional, dan kecerdasan penginderaan jauh
+                dalam satu dashboard performa tinggi berbasis MapLibre GL dan React.
+              </p>
+
+              <!-- Grid of 6 Key Features -->
+              <div class="gis-highlights-grid">
+                <div class="gis-highlight-card">
+                  <span class="gis-highlight-icon">🛰️</span>
+                  <div class="gis-highlight-body">
+                    <strong>NASA FIRMS VIIRS NRT</strong>
+                    <p>Deteksi titik panas (hotspot) kebakaran hutan multi-sensor satelit Suomi-NPP, NOAA-20 &amp; NOAA-21.</p>
+                  </div>
+                </div>
+                <div class="gis-highlight-card">
+                  <span class="gis-highlight-icon">🌋</span>
+                  <div class="gis-highlight-body">
+                    <strong>BMKG TEWS &amp; USGS</strong>
+                    <p>Peringatan dini gempa bumi real-time, status tsunami, dan polygon peringatan cuaca ekstrem CAP.</p>
+                  </div>
+                </div>
+                <div class="gis-highlight-card">
+                  <span class="gis-highlight-icon">🗺️</span>
+                  <div class="gis-highlight-body">
+                    <strong>Batas 38 Provinsi 2026</strong>
+                    <p>Polygon batas resmi Badan Informasi Geospasial (BIG STIG) termasuk pemekaran wilayah Nusantara.</p>
+                  </div>
+                </div>
+                <div class="gis-highlight-card">
+                  <span class="gis-highlight-icon">🌲</span>
+                  <div class="gis-highlight-body">
+                    <strong>Global Forest Watch</strong>
+                    <p>Tutupan tajuk pohon, sebaran lahan gambut, habitat mangrove, &amp; konsesi perkebunan/HTI.</p>
+                  </div>
+                </div>
+                <div class="gis-highlight-card">
+                  <span class="gis-highlight-icon">📁</span>
+                  <div class="gis-highlight-body">
+                    <strong>Engine Vektor 75 MB</strong>
+                    <p>Impor mandiri berkas GeoJSON &amp; ZIP Shapefile (.shp, .dbf, .prj) langsung di sisi klien.</p>
+                  </div>
+                </div>
+                <div class="gis-highlight-card">
+                  <span class="gis-highlight-icon">💨</span>
+                  <div class="gis-highlight-body">
+                    <strong>GFS Dynamic Wind</strong>
+                    <p>Visualisasi aliran partikel angin beranimasi halus dengan data pergerakan atmosfer global.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack Pills -->
+              <div class="gis-stack-pills">
+                <span class="gis-stack-pill">React 18</span>
+                <span class="gis-stack-pill">TypeScript</span>
+                <span class="gis-stack-pill">MapLibre GL</span>
+                <span class="gis-stack-pill">Three.js 3D</span>
+                <span class="gis-stack-pill">Vite</span>
+                <span class="gis-stack-pill">Tailwind CSS</span>
+                <span class="gis-stack-pill">Express REST API</span>
+                <span class="gis-stack-pill">QGIS &amp; STAC</span>
+              </div>
+
+              <!-- High-impact Action Buttons with Direct Hyperlink -->
+              <div class="featured-actions">
+                <a
+                  class="btn-featured-primary"
+                  href="https://aryspd.github.io/indonesia-geo-viewer/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Akses langsung aplikasi Indonesia Geo Viewer di tab baru"
+                >
+                  <span>Buka Indonesia Geo Viewer (Live App)</span>
+                  <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M7 17 17 7M7 7h10v10" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+                <a class="btn-featured-secondary" href="#workstation-preview">
+                  <span>Simulasi Fitur Peta 👁️</span>
+                </a>
+                <a
+                  class="btn-featured-secondary"
+                  href="https://github.com/aryspd/indonesia-geo-viewer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#i-github"></use>
+                  </svg>
+                  <span>Repository GitHub ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive 3D Workstation Mockup Window -->
+          <div id="workstation-preview" class="gis-workstation-window" data-3d-tilt>
+            <div class="workstation-topbar">
+              <div class="win-dots" aria-hidden="true">
+                <span class="win-dot win-dot-red"></span>
+                <span class="win-dot win-dot-yellow"></span>
+                <span class="win-dot win-dot-green"></span>
+              </div>
+              <div class="win-title-pill">
+                <strong>indonesia-geo-viewer.app</strong> &bull; Sistem Informasi Geospasial Nusantara v2.4
+              </div>
+              <div>
+                <a
+                  href="https://aryspd.github.io/indonesia-geo-viewer/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="font: 600 0.72rem var(--font-code); color: var(--accent); text-decoration: underline; text-underline-offset: 3px;"
+                >
+                  Buka Fullscreen ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- Simulation Tabs Bar -->
+            <div class="workstation-tabs-bar" role="tablist" aria-label="Simulasi Layer Geospasial">
+              <button
+                type="button"
+                class="gis-sim-tab active"
+                data-tab="hotspot"
+                onclick="setGISTab('hotspot')"
+                role="tab"
+              >
+                🛰️ Satelit VIIRS Hotspots
+              </button>
+              <button
+                type="button"
+                class="gis-sim-tab"
+                data-tab="provinces"
+                onclick="setGISTab('provinces')"
+                role="tab"
+              >
+                🗺️ Batas 38 Provinsi 2026
+              </button>
+              <button
+                type="button"
+                class="gis-sim-tab"
+                data-tab="bmkg"
+                onclick="setGISTab('bmkg')"
+                role="tab"
+              >
+                🌋 Gempa &amp; Cuaca BMKG
+              </button>
+              <button
+                type="button"
+                class="gis-sim-tab"
+                data-tab="vector"
+                onclick="setGISTab('vector')"
+                role="tab"
+              >
+                📁 Impor Shapefile &amp; GeoJSON
+              </button>
+            </div>
+
+            <!-- Tab 1: VIIRS Hotspots -->
+            <div class="gis-sim-panel active" data-panel="hotspot" role="tabpanel">
+              <div class="sim-preview-grid">
+                <div class="sim-map-frame">
+                  <svg class="sim-map-svg" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="300" fill="#081423"/>
+                    <!-- Simplified Nusantara Archipelagic Outline -->
+                    <path d="M 60,110 Q 90,130 130,170 Q 150,210 170,240 Q 160,250 140,220 Q 110,180 80,140 Z" fill="#142c44" stroke="#25517a" stroke-width="1.2"/>
+                    <path d="M 160,250 Q 210,255 270,258 Q 300,260 320,265 Q 310,275 250,272 Q 190,268 150,260 Z" fill="#142c44" stroke="#25517a" stroke-width="1.2"/>
+                    <path d="M 200,120 Q 240,110 270,140 Q 280,180 250,210 Q 210,205 190,170 Q 185,140 200,120 Z" fill="#142c44" stroke="#25517a" stroke-width="1.2"/>
+                    <path d="M 300,150 Q 320,130 340,150 Q 330,175 350,195 Q 330,220 315,190 Z" fill="#142c44" stroke="#25517a" stroke-width="1.2"/>
+                    <path d="M 430,160 Q 480,150 540,165 Q 560,200 520,230 Q 470,240 435,200 Z" fill="#142c44" stroke="#25517a" stroke-width="1.2"/>
+                    <!-- Glowing VIIRS Hotspots -->
+                    <circle cx="215" cy="155" r="4.5" fill="#ef4444" opacity="0.95"><animate attributeName="r" values="3;7;3" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0.4;1" dur="1.8s" repeatCount="indefinite"/></circle>
+                    <circle cx="230" cy="170" r="4.0" fill="#f97316" opacity="0.95"><animate attributeName="r" values="3;6;3" dur="2.1s" repeatCount="indefinite"/></circle>
+                    <circle cx="115" cy="160" r="4.2" fill="#ef4444" opacity="0.95"><animate attributeName="r" values="2.5;6.5;2.5" dur="1.6s" repeatCount="indefinite"/></circle>
+                    <circle cx="130" cy="180" r="3.8" fill="#f59e0b" opacity="0.95"/>
+                    <circle cx="260" cy="165" r="5.0" fill="#ef4444" opacity="0.95"><animate attributeName="r" values="3;8;3" dur="2.4s" repeatCount="indefinite"/></circle>
+                    <!-- Radar sweep circle -->
+                    <circle cx="300" cy="150" r="110" fill="none" stroke="rgba(101,217,237,0.2)" stroke-dasharray="4,4"/>
+                    <line x1="300" y1="150" x2="380" y2="70" stroke="rgba(101,217,237,0.6)" stroke-width="1.5"/>
+                  </svg>
+                  <div class="sim-radar-sweep"></div>
+                  <div class="sim-overlay-telemetry">
+                    🛰️ VIIRS NRT: 12 Hotspot Aktif (Kalbar, Riau, Sumsel) &bull; Confidence: 88-99%
+                  </div>
+                </div>
+                <div class="sim-info-body">
+                  <h3>Deteksi Titik Api NASA FIRMS VIIRS NRT</h3>
+                  <p>
+                    Data satelit resolusi 375m dari instrumen VIIRS pada satelit Suomi-NPP, NOAA-20, dan NOAA-21
+                    disaring secara real-time untuk memantau indikasi kebakaran hutan dan lahan (karhutla) di seluruh Indonesia.
+                  </p>
+                  <ul class="sim-feature-list">
+                    <li>Multi-satelit sinkronisasi langsung ke backend Express</li>
+                    <li>Filter rentang waktu 24 jam, 48 jam, hingga 7 hari terakhir</li>
+                    <li>Filter tingkat kepercayaan (Low, Nominal, High Confidence)</li>
+                    <li>Identifikasi wilayah administrasi kabupaten &amp; konsesi terdekat</li>
+                  </ul>
+                  <a
+                    href="https://aryspd.github.io/indonesia-geo-viewer/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary"
+                  >
+                    Buka Layer Hotspot di Geo Viewer ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 2: 38 Provinces -->
+            <div class="gis-sim-panel" data-panel="provinces" role="tabpanel">
+              <div class="sim-preview-grid">
+                <div class="sim-map-frame">
+                  <svg class="sim-map-svg" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="300" fill="#081423"/>
+                    <!-- Boundary outlines with cyan highlight -->
+                    <path d="M 60,110 Q 90,130 130,170 Q 150,210 170,240 Q 160,250 140,220 Q 110,180 80,140 Z" fill="rgba(101,217,237,0.12)" stroke="#65d9ed" stroke-width="1.8"/>
+                    <path d="M 160,250 Q 210,255 270,258 Q 300,260 320,265 Q 310,275 250,272 Q 190,268 150,260 Z" fill="rgba(101,217,237,0.12)" stroke="#65d9ed" stroke-width="1.8"/>
+                    <path d="M 200,120 Q 240,110 270,140 Q 280,180 250,210 Q 210,205 190,170 Q 185,140 200,120 Z" fill="rgba(101,217,237,0.18)" stroke="#65d9ed" stroke-width="2.0"/>
+                    <path d="M 300,150 Q 320,130 340,150 Q 330,175 350,195 Q 330,220 315,190 Z" fill="rgba(101,217,237,0.12)" stroke="#65d9ed" stroke-width="1.8"/>
+                    <path d="M 430,160 Q 480,150 540,165 Q 560,200 520,230 Q 470,240 435,200 Z" fill="rgba(101,217,237,0.15)" stroke="#65d9ed" stroke-width="1.8"/>
+                    <!-- IKN Star Marker -->
+                    <polygon points="265,160 268,168 277,168 270,173 273,181 265,176 257,181 260,173 253,168 262,168" fill="#f59e0b" stroke="#ffffff" stroke-width="0.8">
+                      <animate attributeName="transform" type="scale" values="1;1.25;1" dur="2s" repeatCount="indefinite"/>
+                    </polygon>
+                    <text x="282" y="174" fill="#f59e0b" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="bold">IKN NUSANTARA</text>
+                  </svg>
+                  <div class="sim-overlay-telemetry">
+                    🗺️ BIG STIG: 38 Provinsi Termutakhir &bull; EPSG:4326 GeoJSON MultiPolygon
+                  </div>
+                </div>
+                <div class="sim-info-body">
+                  <h3>Batas Resmi 38 Wilayah Provinsi Indonesia</h3>
+                  <p>
+                    Data polygon administrasi bersumber langsung dari Badan Informasi Geospasial (BIG STIG Feature Layer),
+                    memuat seluruh 38 provinsi di Indonesia termasuk 4 provinsi baru di wilayah Papua.
+                  </p>
+                  <ul class="sim-feature-list">
+                    <li>Papua Selatan, Papua Tengah, Papua Pegunungan, Papua Barat Daya</li>
+                    <li>Inspeksi atribut wilayah: luas area, kode kemendagri, dan ibukota</li>
+                    <li>Dua lapisan outline bergaris ganda agar terbaca di atas citra satelit</li>
+                    <li>Pencarian nama provinsi dan zoom instan ke bounding box</li>
+                  </ul>
+                  <a
+                    href="https://aryspd.github.io/indonesia-geo-viewer/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary"
+                  >
+                    Jelajahi 38 Provinsi di Geo Viewer ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 3: BMKG & Weather -->
+            <div class="gis-sim-panel" data-panel="bmkg" role="tabpanel">
+              <div class="sim-preview-grid">
+                <div class="sim-map-frame">
+                  <svg class="sim-map-svg" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="300" fill="#081423"/>
+                    <!-- Archipelagic Outline -->
+                    <path d="M 60,110 Q 90,130 130,170 Q 150,210 170,240 Q 160,250 140,220 Q 110,180 80,140 Z" fill="#142c44" stroke="#25517a" stroke-width="1.2"/>
+                    <path d="M 160,250 Q 210,255 270,258 Q 300,260 320,265 Q 310,275 250,272 Q 190,268 150,260 Z" fill="#142c44" stroke="#25517a" stroke-width="1.2"/>
+                    <path d="M 200,120 Q 240,110 270,140 Q 280,180 250,210 Q 210,205 190,170 Q 185,140 200,120 Z" fill="#142c44" stroke="#25517a" stroke-width="1.2"/>
+                    <!-- Seismic Epicenter Waves -->
+                    <circle cx="180" cy="275" r="8" fill="#f43f5e" opacity="0.9"/>
+                    <circle cx="180" cy="275" r="22" fill="none" stroke="#f43f5e" stroke-width="1.5" opacity="0.8"><animate attributeName="r" values="8;36;60" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.9;0.3;0" dur="2s" repeatCount="indefinite"/></circle>
+                    <circle cx="180" cy="275" r="40" fill="none" stroke="#f43f5e" stroke-width="1.2" opacity="0.5"><animate attributeName="r" values="12;50;80" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;0.2;0" dur="2s" repeatCount="indefinite"/></circle>
+                    <text x="195" y="278" fill="#f43f5e" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="bold">GEMPA M 5.4 · KEDALAMAN 10 KM (BMKG)</text>
+                  </svg>
+                  <div class="sim-overlay-telemetry">
+                    🌋 BMKG TEWS: Terhubung &bull; Status Tsunami: AMAN &bull; CAP Nowcast: AKTIF
+                  </div>
+                </div>
+                <div class="sim-info-body">
+                  <h3>Peringatan Dini Kebencanaan BMKG &amp; USGS</h3>
+                  <p>
+                    Integrasi feed langsung BMKG TEWS (Indonesia Tsunami Early Warning System)
+                    dan USGS Seismicity API untuk pemantauan gempa bumi real-time di sepanjang zona subduksi lempeng Nusantara.
+                  </p>
+                  <ul class="sim-feature-list">
+                    <li>Notifikasi gempa M 5.0+ terkini dengan koordinat episentrum &amp; magnitudo</li>
+                    <li>Common Alerting Protocol (CAP) peringatan cuaca ekstrem</li>
+                    <li>Laju curah hujan satelit NASA GPM IMERG global precipitation</li>
+                    <li>Prakiraan cuaca spesifik hingga level kelurahan/desa</li>
+                  </ul>
+                  <a
+                    href="https://aryspd.github.io/indonesia-geo-viewer/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary"
+                  >
+                    Lihat Monitoring Gempa di Geo Viewer ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 4: Vector Data Engine -->
+            <div class="gis-sim-panel" data-panel="vector" role="tabpanel">
+              <div class="sim-preview-grid">
+                <div class="sim-map-frame">
+                  <svg class="sim-map-svg" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="300" fill="#081423"/>
+                    <!-- Grid background -->
+                    <defs>
+                      <pattern id="grid-vec" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <line x1="0" y1="0" x2="20" y2="0" stroke="rgba(101,217,237,0.08)" stroke-width="1"/>
+                        <line x1="0" y1="0" x2="0" y2="20" stroke="rgba(101,217,237,0.08)" stroke-width="1"/>
+                      </pattern>
+                    </defs>
+                    <rect width="600" height="300" fill="url(#grid-vec)"/>
+                    <!-- Simulated Vector Polygons -->
+                    <polygon points="180,80 260,60 310,120 280,190 200,170" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="2.2" stroke-dasharray="6,3"/>
+                    <circle cx="180" cy="80" r="3.5" fill="#10b981"/>
+                    <circle cx="260" cy="60" r="3.5" fill="#10b981"/>
+                    <circle cx="310" cy="120" r="3.5" fill="#10b981"/>
+                    <circle cx="280" cy="190" r="3.5" fill="#10b981"/>
+                    <circle cx="200" cy="170" r="3.5" fill="#10b981"/>
+                    <!-- Vector Point Clusters -->
+                    <circle cx="380" cy="140" r="6" fill="#38bdf8" opacity="0.8"/>
+                    <circle cx="410" cy="160" r="5" fill="#38bdf8" opacity="0.8"/>
+                    <circle cx="395" cy="180" r="7" fill="#38bdf8" opacity="0.8"/>
+                    <text x="210" y="130" fill="#10b981" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="bold">KONSESI_SAWIT.SHP</text>
+                  </svg>
+                  <div class="sim-overlay-telemetry">
+                    📁 VECTOR ENGINE: GeoJSON &bull; Shapefile ZIP (Maks 75 MB) &bull; Auto Reproject WGS84
+                  </div>
+                </div>
+                <div class="sim-info-body">
+                  <h3>Impor Vektor Shapefile &amp; GeoJSON Tanpa Server</h3>
+                  <p>
+                    Fitur canggih bagi praktisi GIS untuk memasukkan dan menganalisis berkas geospasial lokal
+                    langsung di browser. File diproses di memori klien tanpa harus diunggah ke server pihak ketiga.
+                  </p>
+                  <ul class="sim-feature-list">
+                    <li>Mendukung Shapefile (.shp, .shx, .dbf, .prj) langsung dalam format ZIP</li>
+                    <li>Transformasi proyeksi otomatis dari koordinat UTM/lokal ke WGS84</li>
+                    <li>Mendukung file GeoJSON standar RFC 7946 hingga 75 MB</li>
+                    <li>Styling otomatis berdasarkan tipe geometri: titik, garis, dan poligon</li>
+                  </ul>
+                  <a
+                    href="https://aryspd.github.io/indonesia-geo-viewer/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary"
+                  >
+                    Coba Impor Shapefile di Geo Viewer ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section
         id="video-gallery"
         class="section section-tinted"
@@ -379,7 +838,7 @@
               <h2 id="work-title">Dari sistem ke layar.</h2>
             </div>
             <p>
-              Proyek teknologi, presentasi, dan karya video. Dua sisi keahlian
+              Proyek teknologi, sistem informasi geospasial, presentasi, dan karya video. Dua sisi keahlian
               yang saling melengkapi.
             </p>
           </div>
@@ -392,6 +851,13 @@
                 @click="setFilter('all')"
               >
                 Semua karya</button
+              ><button
+                type="button"
+                class="filter-button"
+                :aria-pressed="workFilter === 'gis'"
+                @click="setFilter('gis')"
+              >
+                Web GIS 3D</button
               ><button
                 type="button"
                 class="filter-button"
@@ -414,11 +880,44 @@
               aria-atomic="true"
               x-text="workSummary()"
             >
-              9 video portofolio
+              10 karya portofolio
             </p>
           </div>
           <div class="work-grid">
-            <article class="work-card" x-show="visibleWork('tech', 0)">
+            <article class="work-card work-card-gis" data-3d-tilt x-show="visibleWork('gis', 99)">
+              <a
+                class="work-link"
+                href="https://aryspd.github.io/indonesia-geo-viewer/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Akses langsung Indonesia Geo Viewer: Sistem Informasi Geospasial Nusantara"
+              >
+                <div class="work-art art-gis-map" aria-hidden="true">
+                  <div class="art-meta">
+                    <span>Web GIS 3D</span><span class="art-tag" style="background:#0ea5e9;color:#fff;">LIVE APP</span>
+                  </div>
+                  <div class="tree-art" style="flex-direction:column;gap:0.4rem;align-items:center;">
+                    <span style="font-size:2.2rem;line-height:1;">🗺️</span>
+                    <strong style="color:var(--accent);font-family:var(--font-display);font-size:0.95rem;letter-spacing:-0.02em;">INDONESIA GEO VIEWER</strong>
+                    <span style="font-size:0.7rem;color:var(--muted);font-family:var(--font-code);">20+ Layer &bull; 38 Provinsi &bull; Satelit NRT</span>
+                  </div>
+                  <span class="art-caption">Aplikasi Web Interaktif</span>
+                  <span class="play-badge" style="background:var(--accent);color:var(--on-accent);">
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
+                  </span>
+                </div>
+                <div class="work-body">
+                  <p class="card-kicker">Web GIS &bull; Remote Sensing &bull; MapLibre GL</p>
+                  <h3>Indonesia Geo Viewer</h3>
+                  <p>Sistem Informasi Geospasial Nusantara &bull; React &amp; TypeScript</p>
+                  <div class="work-footer" style="color:var(--accent);font-weight:700;">
+                    <span>Buka Aplikasi Live</span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
+                  </div>
+                </div>
+              </a>
+            </article>
+            <article class="work-card" data-3d-tilt x-show="visibleWork('tech', 0)">
               <a
                 class="work-link"
                 href="https://www.youtube.com/watch?v=pliWiGHHj1g"
@@ -459,7 +958,7 @@
                 </div>
               </a>
             </article>
-            <article class="work-card" x-show="visibleWork('tech', 1)">
+            <article class="work-card" data-3d-tilt x-show="visibleWork('tech', 1)">
               <a
                 class="work-link"
                 href="https://www.youtube.com/watch?v=h29RqPYDa9c"
@@ -501,7 +1000,7 @@
                 </div>
               </a>
             </article>
-            <article class="work-card" x-show="visibleWork('tech', 2)">
+            <article class="work-card" data-3d-tilt x-show="visibleWork('tech', 2)">
               <a
                 class="work-link"
                 href="https://www.youtube.com/watch?v=hUPAWhSVXXQ"
@@ -538,7 +1037,7 @@
                 </div>
               </a>
             </article>
-            <article class="work-card" x-show="visibleWork('creative', 3)">
+            <article class="work-card" data-3d-tilt x-show="visibleWork('creative', 3)">
               <a
                 class="work-link"
                 href="https://www.youtube.com/watch?v=LSg3Zj4mDUo"
@@ -574,7 +1073,7 @@
                 </div>
               </a>
             </article>
-            <article class="work-card" x-show="visibleWork('creative', 4)">
+            <article class="work-card" data-3d-tilt x-show="visibleWork('creative', 4)">
               <a
                 class="work-link"
                 href="https://www.youtube.com/watch?v=js2xv7p6s08"
@@ -612,7 +1111,7 @@
                 </div>
               </a>
             </article>
-            <article class="work-card" x-show="visibleWork('creative', 5)">
+            <article class="work-card" data-3d-tilt x-show="visibleWork('creative', 5)">
               <a
                 class="work-link"
                 href="https://www.youtube.com/watch?v=zJORup4jtLs"
@@ -650,7 +1149,7 @@
                 </div>
               </a>
             </article>
-            <article class="work-card" x-show="visibleWork('creative', 6)">
+            <article class="work-card" data-3d-tilt x-show="visibleWork('creative', 6)">
               <a
                 class="work-link"
                 href="https://www.youtube.com/watch?v=4m6YnfGIn5M"
@@ -688,7 +1187,7 @@
                 </div>
               </a>
             </article>
-            <article class="work-card" x-show="visibleWork('creative', 7)">
+            <article class="work-card" data-3d-tilt x-show="visibleWork('creative', 7)">
               <a
                 class="work-link"
                 href="https://drive.google.com/file/d/1intUqCb3BbGpXZR5Ren-znoRECjYd0_D/view"
@@ -724,7 +1223,7 @@
                 </div>
               </a>
             </article>
-            <article class="work-card" x-show="visibleWork('creative', 8)">
+            <article class="work-card" data-3d-tilt x-show="visibleWork('creative', 8)">
               <a
                 class="work-link"
                 href="https://www.youtube.com/watch?v=Xf8iqOqNFmU"

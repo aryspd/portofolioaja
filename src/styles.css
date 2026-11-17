@@ -1772,3 +1772,672 @@ svg.icon {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ==========================================================================
+   3D SHOWCASE & INDONESIA GEO VIEWER FEATURED SECTION
+   ========================================================================== */
+
+/* Hero 3D background canvas */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+#hero-3d-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.65;
+}
+.hero > .shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* 3D Tilt Card & Glare */
+[data-3d-tilt] {
+  transform-style: preserve-3d;
+  transition: transform 0.12s cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: transform;
+  position: relative;
+}
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 20;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Featured Project Section */
+.featured-project-section {
+  position: relative;
+  background: radial-gradient(
+    circle at 50% 15%,
+    rgba(101, 217, 237, 0.08) 0%,
+    rgba(17, 30, 48, 0.95) 45%,
+    var(--canvas) 90%
+  );
+  border-top: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+  border-bottom: 1px solid var(--border);
+  padding-block: clamp(4.5rem, 8vw, 7.5rem);
+  overflow: hidden;
+}
+:root[data-theme="arya-light"] .featured-project-section {
+  background: radial-gradient(
+    circle at 50% 15%,
+    rgba(8, 106, 134, 0.08) 0%,
+    rgba(232, 239, 247, 0.75) 45%,
+    var(--canvas) 90%
+  );
+}
+
+.featured-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+/* Left: 3D Interactive Globe Console */
+.globe-console-card {
+  background: color-mix(in srgb, var(--surface) 92%, black);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+  position: relative;
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.6),
+              0 0 35px -10px rgba(101, 217, 237, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+.console-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  font: 0.75rem var(--font-code);
+  color: var(--muted);
+}
+.console-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+.status-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+}
+
+.globe-3d-viewport {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  border-radius: calc(var(--radius-card) - 0.5rem);
+  overflow: hidden;
+  background: radial-gradient(circle at center, #071524 0%, #03080e 100%);
+  cursor: grab;
+}
+.globe-3d-viewport:active {
+  cursor: grabbing;
+}
+#nusantara-globe-3d-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* 3D Viewport HUD Overlay */
+.globe-hud-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.hud-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.hud-badge {
+  background: rgba(11, 19, 33, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(101, 217, 237, 0.25);
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.5rem;
+  font: 0.68rem var(--font-code);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.hud-badge span {
+  color: var(--accent);
+  font-weight: 600;
+}
+.hud-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+.hud-telemetry {
+  background: rgba(11, 19, 33, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(101, 217, 237, 0.2);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font: 0.65rem var(--font-code);
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 70%;
+}
+.hud-telemetry strong {
+  color: var(--accent);
+}
+
+.globe-hud-controls {
+  pointer-events: auto;
+  display: flex;
+  gap: 0.4rem;
+}
+.hud-ctrl-btn {
+  background: rgba(17, 30, 48, 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(101, 217, 237, 0.3);
+  color: var(--text);
+  font: 0.7rem var(--font-code);
+  padding: 0.4rem 0.65rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+.hud-ctrl-btn:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.hud-ctrl-btn.active {
+  background: color-mix(in srgb, var(--accent) 30%, var(--surface));
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Console footer info */
+.console-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.85rem;
+  border-top: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+  font: 0.7rem var(--font-code);
+  color: var(--muted);
+}
+.console-footer-nodes {
+  display: flex;
+  gap: 0.75rem;
+}
+.node-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.node-pill i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Right: Featured Story & CTAs */
+.featured-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.featured-kicker-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.badge-live-gis {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  font: 600 0.7rem var(--font-code);
+  padding: 0.3rem 0.65rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.featured-title {
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  margin: 0;
+}
+.featured-title span {
+  color: var(--accent);
+  display: block;
+  font-size: 0.65em;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  letter-spacing: -0.02em;
+}
+.featured-lead {
+  font-size: 1.02rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.featured-lead strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* GIS Features Grid */
+.gis-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-block: 0.5rem;
+}
+.gis-highlight-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  padding: 0.75rem 0.95rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.gis-highlight-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.gis-highlight-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.gis-highlight-body strong {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+.gis-highlight-body p {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Tech stack pills */
+.gis-stack-pills {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.gis-stack-pill {
+  font: 0.68rem var(--font-code);
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.5rem;
+}
+
+/* Prominent CTAs */
+.featured-actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+.btn-featured-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #10b981 100%);
+  color: #021a24 !important;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0.95rem 1.6rem;
+  border-radius: var(--radius-control);
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 8px 24px -4px rgba(6, 182, 212, 0.4),
+              0 0 15px 0 rgba(16, 185, 129, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-featured-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 30px -4px rgba(6, 182, 212, 0.6),
+              0 0 25px 4px rgba(16, 185, 129, 0.4);
+  filter: brightness(1.08);
+}
+.btn-featured-primary .icon {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.5;
+  transition: transform 0.2s ease;
+}
+.btn-featured-primary:hover .icon {
+  transform: translate(2px, -2px);
+}
+
+.btn-featured-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--surface);
+  color: var(--text) !important;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.9rem 1.3rem;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-featured-secondary:hover {
+  background: var(--surface-2);
+  border-color: var(--accent);
+  color: var(--accent) !important;
+  transform: translateY(-1px);
+}
+
+/* Interactive GIS Workstation Window (Mockup & Simulation) */
+.gis-workstation-window {
+  margin-top: 3.5rem;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--border));
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.7);
+}
+.workstation-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background: color-mix(in srgb, var(--surface-2) 80%, black);
+  border-bottom: 1px solid var(--border);
+}
+.win-dots {
+  display: flex;
+  gap: 0.45rem;
+}
+.win-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.win-dot-red { background: #ef4444; }
+.win-dot-yellow { background: #f59e0b; }
+.win-dot-green { background: #10b981; }
+
+.win-title-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(11, 19, 33, 0.6);
+  border: 1px solid rgba(101, 217, 237, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font: 0.72rem var(--font-code);
+  color: var(--muted);
+}
+.win-title-pill strong {
+  color: var(--accent);
+}
+
+.workstation-tabs-bar {
+  display: flex;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.workstation-tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+.gis-sim-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.3rem;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font: 600 0.78rem var(--font-display);
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.gis-sim-tab:hover {
+  color: var(--text);
+  background: rgba(101, 217, 237, 0.04);
+}
+.gis-sim-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: rgba(101, 217, 237, 0.08);
+}
+
+/* Simulation Panels */
+.gis-sim-panel {
+  display: none;
+  padding: clamp(1.2rem, 3vw, 2.5rem);
+}
+.gis-sim-panel.active {
+  display: block;
+  animation: panel-fade 0.3s ease;
+}
+@keyframes panel-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.sim-preview-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Simulated Map Viewport */
+.sim-map-frame {
+  position: relative;
+  height: 330px;
+  background: #0b1726;
+  border-radius: var(--radius-control);
+  overflow: hidden;
+  border: 1px solid rgba(101, 217, 237, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sim-map-svg {
+  width: 100%;
+  height: 100%;
+}
+.sim-radar-sweep {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(101, 217, 237, 0.25);
+  pointer-events: none;
+}
+.sim-radar-sweep::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  background: conic-gradient(from 0deg, rgba(101, 217, 237, 0.35), transparent 60%);
+  transform-origin: bottom right;
+  animation: radar-spin 4s linear infinite;
+  border-radius: 100% 0 0 0;
+}
+@keyframes radar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.sim-overlay-telemetry {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background: rgba(6, 16, 29, 0.88);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(101, 217, 237, 0.3);
+  padding: 0.45rem 0.75rem;
+  border-radius: 0.4rem;
+  font: 0.68rem var(--font-code);
+  color: var(--accent);
+}
+
+.sim-info-body h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+.sim-info-body p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+.sim-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.sim-feature-list li {
+  font-size: 0.8rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.sim-feature-list li::before {
+  content: "✓";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* Navbar special featured pill */
+.nav-featured-badge {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(16, 185, 129, 0.2));
+  border: 1px solid rgba(101, 217, 237, 0.4);
+  color: var(--accent) !important;
+  padding: 0.25rem 0.65rem !important;
+  border-radius: 9999px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  animation: subtle-pulse 3s infinite ease-in-out;
+}
+@keyframes subtle-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(101, 217, 237, 0); }
+  50% { box-shadow: 0 0 12px 2px rgba(101, 217, 237, 0.25); }
+}
+
+/* Web GIS Spotlight Card in Video Gallery */
+.work-card-gis {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  background: radial-gradient(circle at top right, rgba(101, 217, 237, 0.08), var(--surface));
+}
+.art-gis-map {
+  background: linear-gradient(135deg, #091a2b 0%, #0d283e 100%);
+  position: relative;
+  overflow: hidden;
+}
+.art-gis-map::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(101, 217, 237, 0.3) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.5;
+}
+
+/* Responsive queries */
+@media (max-width: 1024px) {
+  .featured-layout {
+    grid-template-columns: 1fr;
+  }
+  .globe-3d-viewport {
+    height: 380px;
+  }
+  .sim-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .gis-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+  .globe-3d-viewport {
+    height: 320px;
+  }
+  .hud-telemetry {
+    max-width: 100%;
+    font-size: 0.6rem;
+  }
+  .featured-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-featured-primary,
+  .btn-featured-secondary {
+    justify-content: center;
+  }
+}
