@@ -54,6 +54,15 @@
     @keydown.escape.window="escapeMenu()"
     @keydown.window="photoKeyboard($event)"
   >
+    <!-- Aurora Glass Floating Backdrop (from template) -->
+    <div aria-hidden="true" class="aurora-backdrop">
+      <div class="aurora-radial-mesh"></div>
+      <div class="aurora-orb aurora-orb-1"></div>
+      <div class="aurora-orb aurora-orb-2"></div>
+      <div class="aurora-orb aurora-orb-3"></div>
+      <div class="aurora-vignette"></div>
+      <div class="aurora-grain"></div>
+    </div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="0"
@@ -152,6 +161,10 @@
             d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm10 4h.01"
           />
           <circle cx="12" cy="12" r="4" />
+        </symbol>
+        <symbol id="i-whatsapp" viewBox="0 0 24 24">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9.5 9.5c.3-.6.6-.6.9-.6h.7c.2 0 .4.1.5.3l1 2.2c.1.3.1.5 0 .7l-.5.7c-.1.2-.1.4 0 .6.7 1.3 1.8 2.4 3.1 3.1.2.1.4.1.6 0l.7-.5c.2-.1.4-.1.7 0l2.2 1c.2.1.3.3.3.5v.7c0 .3 0 .6-.6.9-.7.4-2.1.5-4.1-.7-2.3-1.4-3.9-3.6-4.5-4.4-.8-1.1-1.3-2.6-.9-3.9Z" fill="currentColor"/>
         </symbol>
         <symbol id="i-satellite" viewBox="0 0 24 24">
           <path d="m13 2 9 9-4 4-9-9 4-4ZM5 14l-3 3 2 2 3-3M2 22l4-4M10 6 6 10M14 10l-4 4M17 13l-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -353,12 +366,12 @@
                     <use href="#i-linkedin"></use></svg
                   >LinkedIn</a
                 ><a
-                  href="https://github.com/aryspd"
+                  href="https://wa.me/6289629986883"
                   target="_blank"
                   rel="noopener noreferrer"
                   ><svg class="icon" aria-hidden="true">
-                    <use href="#i-github"></use></svg
-                  >GitHub</a
+                    <use href="#i-whatsapp"></use></svg
+                  >WhatsApp</a
                 ><a
                   href="https://www.instagram.com/aryaspd_/"
                   target="_blank"
@@ -658,17 +671,6 @@
                 <a class="btn-featured-secondary" href="#workstation-preview">
                   <svg class="icon" aria-hidden="true"><use href="#i-eye-preview"></use></svg>
                   <span>Simulasi Fitur Peta</span>
-                </a>
-                <a
-                  class="btn-featured-secondary"
-                  href="https://github.com/aryspd/indonesia-geo-viewer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-github"></use>
-                  </svg>
-                  <span>Repository GitHub ↗</span>
                 </a>
               </div>
             </div>
@@ -2004,47 +2006,120 @@
         aria-labelledby="contact-title"
       >
         <div class="shell">
-          <div class="contact-panel">
-            <div>
-              <p class="eyebrow">Mulai percakapan</p>
-              <h2 id="contact-title">
-                Punya ide?<br /><span>Mari terhubung.</span>
-              </h2>
-              <p>
-                Untuk pekerjaan, kolaborasi, atau bertukar ide tentang teknologi
-                dan karya digital, hubungi saya melalui email atau WhatsApp.
+          <div class="contact-panel" data-3d-tilt>
+            <div class="contact-header-content">
+              <p class="eyebrow">
+                <svg class="icon icon-sm" aria-hidden="true" style="width:14px;height:14px;"><use href="#i-sparkle"></use></svg>
+                <span>Mulai Percakapan</span>
               </p>
+              <h2 id="contact-title">
+                Punya ide atau proyek?<br /><span>Mari terhubung.</span>
+              </h2>
+              <p class="contact-subtext">
+                Terbuka untuk kolaborasi web, visual, pemasaran digital, sistem geospasial Nusantara, maupun peluang karir profesional. Silakan hubungi saya melalui saluran sosial media resmi berikut:
+              </p>
+              <div class="contact-location-badge">
+                <svg class="icon icon-sm" aria-hidden="true"><use href="#i-pin"></use></svg>
+                <span>Berbasis di Pontianak, Kalimantan Barat, Indonesia (WIB)</span>
+              </div>
             </div>
-            <div class="contact-list">
-              <a href="mailto:arya.sukma.420@gmail.com" class="contact-link"
-                ><svg class="icon" aria-hidden="true">
-                  <use href="#i-mail"></use></svg
-                ><span><small>Email</small>arya.sukma.420@gmail.com</span
-                ><svg class="icon" aria-hidden="true">
-                  <use href="#i-arrow-up-right"></use></svg></a
-              ><a
-                href="https://wa.me/"
-                class="contact-link"
+
+            <!-- Hyperlinked Social Media & Contact Cards Grid -->
+            <div class="contact-grid">
+              <!-- WhatsApp -->
+              <a
+                href="https://wa.me/6289629986883"
+                class="social-contact-card card-wa"
                 target="_blank"
                 rel="noopener noreferrer"
-                ><svg class="icon" aria-hidden="true">
-                  <use href="#i-phone"></use></svg
-                ><span><small>WhatsApp</small></span
-                ><svg class="icon" aria-hidden="true">
-                  <use href="#i-arrow-up-right"></use></svg
-              ></a>
-              <div class="copy-row">
+                aria-label="Kirim pesan langsung via WhatsApp ke Arya Sukma"
+              >
+                <div class="social-card-icon">
+                  <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+                </div>
+                <div class="social-card-body">
+                  <span class="social-card-tag">WhatsApp Chat</span>
+                  <strong class="social-card-val">+62 896-2998-6883</strong>
+                  <p class="social-card-desc">Respon cepat &amp; konsultasi langsung</p>
+                </div>
+                <div class="social-card-arrow" aria-hidden="true">
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
+                </div>
+              </a>
+
+              <!-- LinkedIn -->
+              <a
+                href="https://www.linkedin.com/in/aryaspd"
+                class="social-contact-card card-li"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Kunjungi profil LinkedIn Arya Sukma Putra Dwika"
+              >
+                <div class="social-card-icon">
+                  <svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg>
+                </div>
+                <div class="social-card-body">
+                  <span class="social-card-tag">LinkedIn Profile</span>
+                  <strong class="social-card-val">Arya Sukma Putra Dwika</strong>
+                  <p class="social-card-desc">Jaringan profesional, karir &amp; rekomendasi</p>
+                </div>
+                <div class="social-card-arrow" aria-hidden="true">
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
+                </div>
+              </a>
+
+              <!-- Instagram -->
+              <a
+                href="https://www.instagram.com/aryaspd_/"
+                class="social-contact-card card-ig"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Kunjungi akun Instagram resmi @aryaspd_"
+              >
+                <div class="social-card-icon">
+                  <svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg>
+                </div>
+                <div class="social-card-body">
+                  <span class="social-card-tag">Instagram Official</span>
+                  <strong class="social-card-val">@aryaspd_</strong>
+                  <p class="social-card-desc">Karya visual, dokumentasi &amp; aktivitas</p>
+                </div>
+                <div class="social-card-arrow" aria-hidden="true">
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
+                </div>
+              </a>
+
+              <!-- Email -->
+              <a
+                href="mailto:arya.sukma.420@gmail.com"
+                class="social-contact-card card-mail"
+                aria-label="Kirim surel formal ke arya.sukma.420@gmail.com"
+              >
+                <div class="social-card-icon">
+                  <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+                </div>
+                <div class="social-card-body">
+                  <span class="social-card-tag">Email Resmi</span>
+                  <strong class="social-card-val">arya.sukma.420@gmail.com</strong>
+                  <p class="social-card-desc">Inquiries kerjasama, penawaran &amp; surat</p>
+                </div>
+                <div class="social-card-arrow" aria-hidden="true">
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg>
+                </div>
+              </a>
+
+              <!-- Copy email shortcut -->
+              <div class="contact-copy-box">
                 <button
                   type="button"
-                  class="text-button"
+                  class="btn-copy-address"
                   x-ref="copyButton"
                   @click="copyEmail()"
+                  title="Klik untuk menyalin alamat email ke clipboard"
                 >
-                  <svg class="icon" aria-hidden="true">
-                    <use href="#i-copy"></use></svg
-                  >Salin alamat email</button
-                ><span aria-hidden="true">·</span
-                ><span>Pontianak, Indonesia</span>
+                  <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                  <span>Salin Alamat Email</span>
+                </button>
               </div>
             </div>
           </div>
@@ -2052,19 +2127,61 @@
       </section>
     </main>
     <footer class="shell site-footer">
-      <p>© 2026 Arya Sukma Putra Dwika.</p>
-      <div class="footer-links">
+      <div class="footer-brand-side">
+        <a class="wordmark" href="#home" aria-label="Arya Sukma Putra Dwika - Beranda">
+          <span class="monogram" aria-hidden="true">A</span>
+          <span>Arya Sukma Putra Dwika</span>
+        </a>
+        <p class="footer-caption">
+          IT &amp; Web Development · Desain &amp; Visual · Digital Marketing · GIS &amp; Data Analytics
+        </p>
+      </div>
+
+      <!-- Hyperlinked Social Media Channels in Footer -->
+      <div class="footer-social-wrap" aria-label="Media sosial Arya Sukma">
+        <a
+          href="https://wa.me/6289629986883"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-social-pill"
+          title="WhatsApp Arya Sukma"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+          <span>WhatsApp</span>
+        </a>
         <a
           href="https://www.linkedin.com/in/aryaspd"
           target="_blank"
           rel="noopener noreferrer"
-          >LinkedIn</a
-        ><a
-          href="https://github.com/aryspd"
+          class="footer-social-pill"
+          title="LinkedIn Arya Sukma"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-linkedin"></use></svg>
+          <span>LinkedIn</span>
+        </a>
+        <a
+          href="https://www.instagram.com/aryaspd_/"
           target="_blank"
           rel="noopener noreferrer"
-          >GitHub</a
-        ><a href="#home">Kembali ke atas ↑</a>
+          class="footer-social-pill"
+          title="Instagram @aryaspd_"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg>
+          <span>Instagram</span>
+        </a>
+        <a
+          href="mailto:arya.sukma.420@gmail.com"
+          class="footer-social-pill"
+          title="Kirim Email"
+        >
+          <svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg>
+          <span>Email</span>
+        </a>
+      </div>
+
+      <div class="footer-end-side">
+        <p>© 2026 Arya Sukma Putra Dwika.</p>
+        <a href="#home" class="footer-back-top">Kembali ke atas ↑</a>
       </div>
     </footer>
     <dialog

@@ -42,9 +42,9 @@
 
         card.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) scale3d(1.018, 1.018, 1.018)`;
 
-        // Position dynamic specular glare
-        glare.style.opacity = "0.22";
-        glare.style.background = `radial-gradient(circle at ${xPct * 100}% ${yPct * 100}%, rgba(101, 217, 237, 0.45) 0%, rgba(255, 255, 255, 0.08) 35%, transparent 70%)`;
+        // Position dynamic specular glare (Aurora tint)
+        glare.style.opacity = "0.25";
+        glare.style.background = `radial-gradient(circle at ${xPct * 100}% ${yPct * 100}%, rgba(125, 227, 224, 0.45) 0%, rgba(16, 185, 129, 0.15) 28%, rgba(255, 255, 255, 0.08) 50%, transparent 75%)`;
       };
 
       const onMouseLeave = () => {
@@ -146,7 +146,7 @@
             const right = nodes[idx + 1];
             const dist = Math.hypot(curr.x - mouse.x, curr.y - mouse.y);
             const alpha = Math.max(0.04, Math.min(0.28, 0.35 - dist / 300));
-            ctx.strokeStyle = `rgba(101, 217, 237, ${alpha})`;
+            ctx.strokeStyle = `rgba(125, 227, 224, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(curr.x, curr.y);
             ctx.lineTo(right.x, right.y);
@@ -158,7 +158,7 @@
             const bottom = nodes[idx + cols];
             const dist = Math.hypot(curr.x - mouse.x, curr.y - mouse.y);
             const alpha = Math.max(0.04, Math.min(0.28, 0.35 - dist / 300));
-            ctx.strokeStyle = `rgba(101, 217, 237, ${alpha})`;
+            ctx.strokeStyle = `rgba(125, 227, 224, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(curr.x, curr.y);
             ctx.lineTo(bottom.x, bottom.y);
@@ -168,7 +168,7 @@
           // Small glowing node point
           const nodeDist = Math.hypot(curr.x - mouse.x, curr.y - mouse.y);
           if (nodeDist < 120) {
-            ctx.fillStyle = "rgba(101, 217, 237, 0.7)";
+            ctx.fillStyle = "rgba(125, 227, 224, 0.75)";
             ctx.beginPath();
             ctx.arc(curr.x, curr.y, 1.8, 0, Math.PI * 2);
             ctx.fill();
