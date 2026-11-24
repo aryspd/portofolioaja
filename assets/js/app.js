@@ -37,7 +37,7 @@ document.addEventListener("alpine:init", () => {
           this.menuOpen = false;
       });
       window.addEventListener("resize", () => {
-        if (window.innerWidth > 800) this.menuOpen = false;
+        if (window.innerWidth > 1024) this.menuOpen = false;
       });
       const motionPreference = window.matchMedia(
         "(prefers-reduced-motion: reduce)",

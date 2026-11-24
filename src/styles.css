@@ -698,6 +698,7 @@ svg.icon {
   position: absolute;
   z-index: 1;
   left: 1.5rem;
+  right: 1.5rem;
   bottom: 1.4rem;
   color: #ffffff;
 }
@@ -791,6 +792,8 @@ svg.icon {
 }
 .filters {
   display: none;
+  flex-wrap: wrap;
+  max-width: 100%;
   gap: 0.35rem;
   padding: 0.3rem;
   background: var(--surface);
@@ -1168,6 +1171,19 @@ svg.icon {
 .js-ready .more-button {
   display: inline-flex;
 }
+.hero-layout > *,
+.featured-layout > *,
+.experience-layout > *,
+.sim-preview-grid > *,
+.contact-panel > *,
+.globe-console-card,
+.featured-details,
+.timeline-item,
+.achievement,
+.skill-card,
+.work-card {
+  min-width: 0;
+}
 .experience-layout {
   display: grid;
   grid-template-columns: 1.55fr 1fr;
@@ -1223,11 +1239,22 @@ svg.icon {
 .timeline-item h3 {
   font-size: 1.17rem;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 .timeline-org {
   color: var(--muted);
   font-size: 0.82rem;
   margin-top: 0.3rem;
+  overflow-wrap: anywhere;
+}
+.timeline-item > div:has(.exp-pillar-pill) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+.timeline-item > div:has(.exp-pillar-pill) .exp-pillar-pill {
+  margin: 0;
 }
 .timeline-item ul {
   color: var(--muted);
@@ -1238,11 +1265,16 @@ svg.icon {
 }
 .timeline-item li {
   margin-bottom: 0.2rem;
+  overflow-wrap: anywhere;
 }
 .timeline-desc {
   color: var(--muted);
   font-size: 0.84rem;
   margin-top: 0.75rem;
+  overflow-wrap: anywhere;
+}
+.timeline-desc a {
+  overflow-wrap: anywhere;
 }
 .achievement {
   padding: 1.3rem;
@@ -1609,8 +1641,10 @@ svg.icon {
 }
 .footer-end-side {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 0.75rem;
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   font-size: 0.76rem;
@@ -1992,6 +2026,9 @@ svg.icon {
     align-items: start;
     flex-direction: column;
     gap: 0.75rem;
+  }
+  .filters {
+    width: 100%;
   }
   .filter-button {
     font-size: 0.74rem;
@@ -2634,8 +2671,10 @@ svg.icon {
 }
 .workstation-topbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  gap: 0.5rem 0.75rem;
   padding: 0.85rem 1.25rem;
   background: color-mix(in srgb, var(--surface-2) 80%, black);
   border-bottom: 1px solid var(--border);
@@ -2772,6 +2811,8 @@ svg.icon {
   position: absolute;
   bottom: 0.75rem;
   left: 0.75rem;
+  right: 0.75rem;
+  max-width: calc(100% - 1.5rem);
   background: rgba(6, 16, 29, 0.88);
   backdrop-filter: blur(6px);
   border: 1px solid rgba(101, 217, 237, 0.3);
@@ -2926,75 +2967,6 @@ svg.icon {
   z-index: 2;
 }
 
-/* Responsive queries */
-@media (max-width: 1024px) {
-  .featured-layout {
-    grid-template-columns: 1fr;
-  }
-  .globe-3d-viewport {
-    height: 380px;
-  }
-  .mini-iframe-container {
-    height: 400px;
-  }
-  .sim-preview-grid {
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 640px) {
-  .gis-highlights-grid {
-    grid-template-columns: 1fr;
-  }
-  .globe-console-card {
-    padding: 0.85rem;
-  }
-  .console-header {
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    font-size: 0.68rem;
-  }
-  .globe-3d-viewport {
-    height: 300px;
-  }
-  .mini-iframe-container {
-    height: 320px;
-  }
-  .mini-site-topbar {
-    padding: 0.55rem 0.7rem;
-    gap: 0.5rem;
-  }
-  .mini-site-dots {
-    display: none;
-  }
-  .mini-site-address {
-    min-width: 0;
-    width: 100%;
-    max-width: 100%;
-    flex: 1 1 100%;
-  }
-  .mini-site-actions {
-    width: 100%;
-    justify-content: space-between;
-  }
-  .mini-action-btn {
-    flex: 1;
-    justify-content: center;
-    padding: 0.45rem 0.6rem;
-  }
-  .hud-telemetry {
-    max-width: 100%;
-    font-size: 0.6rem;
-  }
-  .featured-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .btn-featured-primary,
-  .btn-featured-secondary {
-    justify-content: center;
-  }
-}
-
 /* ==========================================================================
    MINI WEBSITE EMBED IN CONSOLE CARD & 4 PILLARS STYLING
    ========================================================================== */
@@ -3138,6 +3110,8 @@ svg.icon {
   border: 1px solid rgba(125, 227, 224, 0.55);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 24px rgba(125, 227, 224, 0.25);
   padding: 0.65rem 1.25rem;
+  max-width: calc(100% - 1.5rem);
+  text-align: center;
   border-radius: 9999px;
   color: var(--text);
   font: 600 0.8rem var(--font-display);
@@ -3263,6 +3237,128 @@ svg.icon {
 }
 
 /* ==========================================================================
+   RESPONSIVE QUERIES (ALL DEVICES — ORDERED AFTER BASE RULES)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .featured-layout {
+    grid-template-columns: 1fr;
+  }
+  .globe-3d-viewport {
+    height: 380px;
+  }
+  .mini-iframe-container {
+    height: 400px;
+  }
+  .sim-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 960px) {
+  .experience-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+@media (max-width: 640px) {
+  .gis-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+  .globe-console-card {
+    padding: 0.85rem;
+  }
+  .console-header {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-size: 0.68rem;
+  }
+  .globe-3d-viewport {
+    height: 300px;
+  }
+  .mini-iframe-container {
+    height: 320px;
+  }
+  .mini-site-topbar {
+    padding: 0.55rem 0.7rem;
+    gap: 0.5rem;
+  }
+  .mini-site-dots {
+    display: none;
+  }
+  .mini-site-address {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+  .mini-site-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .mini-action-btn {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 0.45rem 0.6rem;
+  }
+  .hud-telemetry {
+    max-width: 100%;
+    font-size: 0.6rem;
+  }
+  .featured-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-featured-primary,
+  .btn-featured-secondary {
+    justify-content: center;
+  }
+  .workstation-topbar {
+    padding: 0.7rem 0.85rem;
+  }
+  .win-dots {
+    display: none;
+  }
+  .win-title-pill {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.66rem;
+  }
+  .sim-map-frame {
+    height: 250px;
+  }
+  .sim-overlay-telemetry {
+    font-size: 0.62rem;
+    padding: 0.35rem 0.6rem;
+  }
+  .gis-sim-tab {
+    padding: 0.7rem 0.95rem;
+    font-size: 0.74rem;
+  }
+}
+@media (max-width: 480px) {
+  .filter-button {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  .timeline-item {
+    padding: 0 0 1.65rem 1.25rem;
+  }
+  .timeline-item h3 {
+    font-size: 1.05rem;
+  }
+  .photo-caption {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .overlay-badge-cta {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.72rem;
+  }
+}
+
+/* ==========================================================================
    SMALL MOBILE (<= 420px) PRECISION POLISH
    ========================================================================== */
 @media (max-width: 420px) {
@@ -3272,8 +3368,25 @@ svg.icon {
   .hero h1 {
     font-size: 2.15rem;
   }
+  .hero-actions .btn {
+    width: 100%;
+  }
+  .portrait-frame {
+    height: 290px;
+  }
+  .portrait-label {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
   .mini-iframe-container {
     height: 280px;
+  }
+  .mini-live-tag {
+    display: none;
+  }
+  .sim-map-frame {
+    height: 220px;
   }
   .skill-card ul {
     grid-template-columns: 1fr;
@@ -3285,5 +3398,12 @@ svg.icon {
   }
   .hud-divider {
     display: none;
+  }
+  .social-contact-card {
+    padding: 0.9rem 1rem;
+    gap: 0.8rem;
+  }
+  .social-card-val {
+    font-size: 0.88rem;
   }
 }
